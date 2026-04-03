@@ -7,7 +7,7 @@
 
 ## 🚀 Live Site
 
-**[View Workshop Site →](https://YOUR-USERNAME.github.io/ai-canvas-workshop/)**
+**[View Workshop Site →]([https://YOUR-USERNAME.github.io/ai-canvas-workshop/]))**
 
 Scan the QR code at the workshop or visit the link above for the full quick-start kit.
 
