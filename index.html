@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Assisted Course Design | Symposium on AI in Higher Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --usf-green: #00543C;
+    --usf-gold: #FDBB30;
+    --usf-gray: #919194;
+    --usf-green-dark: #003D2C;
+    --usf-green-light: #006B4E;
+    --white: #FFFFFF;
+    --off-white: #F8F6F1;
+    --ink: #1A1A1A;
+    --muted: #5A5A5C;
+    --border: #E2DDD5;
+    --card-shadow: 0 2px 12px rgba(0,84,60,0.10);
+    --radius: 10px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--off-white);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  /* ─── HERO ─────────────────────────────────────────── */
+  .hero {
+    background: var(--usf-green);
+    background-image:
+      radial-gradient(ellipse at 80% 20%, rgba(253,187,48,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 10% 80%, rgba(0,107,78,0.4) 0%, transparent 50%);
+    color: var(--white);
+    padding: 3rem 1.5rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 280px; height: 280px;
+    border: 2px solid rgba(253,187,48,0.15);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -30px;
+    width: 200px; height: 200px;
+    border: 2px solid rgba(253,187,48,0.08);
+    border-radius: 50%;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(253,187,48,0.2);
+    border: 1px solid rgba(253,187,48,0.4);
+    color: var(--usf-gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+    max-width: 680px;
+  }
+
+  .hero h1 em {
+    color: var(--usf-gold);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 520px;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .hero-meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+  /* ─── NAV STRIP ─────────────────────────────────────── */
+  .nav-strip {
+    background: var(--usf-green-dark);
+    border-bottom: 3px solid var(--usf-gold);
+    padding: 0 1.5rem;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nav-strip::-webkit-scrollbar { display: none; }
+
+  .nav-strip a {
+    display: block;
+    padding: 0.85rem 1.25rem;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav-strip a:hover, .nav-strip a.active {
+    color: var(--usf-gold);
+    border-bottom-color: var(--usf-gold);
+  }
+
+  /* ─── LAYOUT ────────────────────────────────────────── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 1.25rem; }
+
+  section { padding: 2.5rem 0; }
+  section + section { border-top: 1px solid var(--border); }
+
+  /* ─── SECTION LABELS ────────────────────────────────── */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--usf-green);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--usf-green-dark);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+
+  p { color: var(--muted); margin-bottom: 0.75rem; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ─── STAGE CARDS (Backward Design) ─────────────────── */
+  .stages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .stage-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+    border-top: 4px solid var(--usf-green);
+    position: relative;
+  }
+
+  .stage-card:nth-child(2) { border-top-color: var(--usf-gold); }
+  .stage-card:nth-child(3) { border-top-color: var(--usf-gray); }
+
+  .stage-num {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3rem;
+    color: var(--border);
+    line-height: 1;
+    position: absolute;
+    top: 1rem; right: 1.25rem;
+  }
+
+  .stage-card h3 { color: var(--usf-green); font-size: 0.75rem; font-family: 'DM Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .stage-card strong { display: block; font-family: Arial, Helvetica, sans-serif; font-size: 1.2rem; color: var(--ink); margin-bottom: 0.5rem; font-weight: 400; }
+
+  /* ─── AGENDA ────────────────────────────────────────── */
+  .agenda { margin-top: 1.5rem; }
+
+  .agenda-item {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .agenda-item:last-child { border-bottom: none; }
+
+  .time-block {
+    background: var(--usf-green);
+    color: var(--usf-gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 0.35rem 0.25rem;
+    border-radius: 6px;
+    line-height: 1.3;
+  }
+
+  .agenda-content strong { display: block; font-size: 0.95rem; margin-bottom: 0.15rem; color: var(--ink); }
+  .agenda-content span { font-size: 0.83rem; color: var(--muted); }
+
+  .agenda-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    border-radius: 100px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+  .tag-demo { background: rgba(0,84,60,0.1); color: var(--usf-green); }
+  .tag-live { background: rgba(253,187,48,0.2); color: #7A5200; }
+  .tag-qa { background: rgba(145,145,148,0.15); color: var(--muted); }
+
+  /* ─── ARTIFACT REGISTRY ──────────────────────────────── */
+  .artifact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .artifact-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    box-shadow: var(--card-shadow);
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+  }
+  .artifact-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,84,60,0.14);
+    border-color: var(--usf-green);
+  }
+
+  .artifact-icon {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--usf-green), var(--usf-green-light));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .artifact-card h3 { font-size: 0.9rem; color: var(--ink); margin-bottom: 0.25rem; }
+  .artifact-card p { font-size: 0.78rem; color: var(--muted); margin: 0; }
+
+  .artifact-type {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--usf-green);
+    margin-bottom: 0.35rem;
+  }
+
+  /* ─── PROMPT LIBRARY ─────────────────────────────────── */
+  .prompt-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 1rem;
+    box-shadow: var(--card-shadow);
+  }
+
+  .prompt-header {
+    background: var(--usf-green);
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .prompt-header span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--usf-gold);
+    font-weight: 500;
+  }
+
+  .copy-btn {
+    background: rgba(253,187,48,0.2);
+    border: 1px solid rgba(253,187,48,0.4);
+    color: var(--usf-gold);
+    font-size: 0.7rem;
+    font-family: 'DM Mono', monospace;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover { background: rgba(253,187,48,0.35); }
+  .copy-btn.copied { background: rgba(253,187,48,0.5); }
+
+  .prompt-body {
+    padding: 1.25rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: var(--ink);
+    white-space: pre-wrap;
+    background: #FAFAF8;
+  }
+
+  .prompt-body .placeholder {
+    background: rgba(253,187,48,0.25);
+    border-radius: 3px;
+    padding: 0 3px;
+    color: #7A5200;
+    font-weight: 500;
+  }
+
+  /* ─── WORKFLOW STEPS ─────────────────────────────────── */
+  .workflow-steps {
+    counter-reset: step;
+    margin-top: 1.5rem;
+  }
+
+  .step {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+  }
+
+  .step-num {
+    counter-increment: step;
+    flex-shrink: 0;
+    width: 40px; height: 40px;
+    background: var(--usf-green);
+    color: var(--usf-gold);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.3rem;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .step-body strong { display: block; font-size: 0.95rem; margin-bottom: 0.2rem; color: var(--ink); }
+  .step-body p { font-size: 0.85rem; margin: 0; }
+
+  /* ─── CRISP FRAMEWORK ────────────────────────────────── */
+  .crisp-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .crisp-table td { padding: 0.75rem 1rem; }
+
+  .crisp-letter {
+    background: var(--usf-green);
+    color: var(--usf-gold);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.8rem;
+    width: 56px;
+    text-align: center;
+    border-radius: 8px 0 0 8px;
+  }
+
+  .crisp-word {
+    background: var(--usf-green-dark);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    width: 100px;
+  }
+
+  .crisp-desc {
+    background: var(--white);
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-radius: 0 8px 8px 0;
+    border: 1px solid var(--border);
+    border-left: none;
+  }
+
+  /* ─── FOOTER ─────────────────────────────────────────── */
+  footer {
+    background: var(--usf-green-dark);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: 0.8rem;
+    font-family: 'DM Mono', monospace;
+  }
+
+  footer strong { color: var(--usf-gold); }
+
+  /* ─── UTILITY ────────────────────────────────────────── */
+  .gold-line {
+    width: 48px; height: 3px;
+    background: var(--usf-gold);
+    border-radius: 2px;
+    margin-bottom: 1rem;
+  }
+
+  .callout {
+    background: rgba(0,84,60,0.06);
+    border-left: 4px solid var(--usf-green);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1rem 1.25rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+
+  .callout strong { color: var(--usf-green); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 2rem 1.25rem; }
+    .stages { grid-template-columns: 1fr; }
+    .artifact-grid { grid-template-columns: 1fr 1fr; }
+    .crisp-word { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="badge">Symposium on AI in Higher Education · 30-min Workshop</div>
+    <h1>Build Canvas Courses <em>Faster</em> with GenAI</h1>
+    <p class="hero-sub">A practical copy-and-create workflow for faculty — no technical background required.</p>
+    <div class="hero-meta">
+      <span>⏱ 30 minutes</span>
+      <span>📋 Intro + Demo + Q&amp;A</span>
+      <span>📦 Quick-start kit included</span>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav-strip" aria-label="Workshop sections">
+  <div class="container" style="display:flex; padding:0;">
+    <a href="#design">Backward Design</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#workflow">Workflow</a>
+    <a href="#crisp">CRISP Framework</a>
+    <a href="#prompts">Prompt Library</a>
+    <a href="#artifacts">Quick-Start Kit</a>
+  </div>
+</nav>
+
+<main class="container">
+
+  <!-- ── SECTION 1: BACKWARD DESIGN ── -->
+  <section id="design">
+    <div class="section-label">Stage 1 of 3 — Backward Design</div>
+    <div class="gold-line"></div>
+    <h2>Start with the End in Mind</h2>
+    <p>This workshop uses <strong>Backward Design</strong> (Wiggins &amp; McTighe). We defined what attendees must <em>do</em> after 30 minutes, then built the session around that — not the other way around.</p>
+
+    <div class="stages">
+      <div class="stage-card">
+        <div class="stage-num">1</div>
+        <h3>Desired Results</h3>
+        <strong>What attendees can do</strong>
+        <p>Write a context-rich prompt. Run a live Canvas task with AI. Take home a repeatable workflow and copy-paste kit.</p>
+      </div>
+      <div class="stage-card">
+        <div class="stage-num">2</div>
+        <h3>Acceptable Evidence</h3>
+        <strong>How we know it worked</strong>
+        <p>Attendees leave with one AI-generated Canvas artifact they produced (or could produce) by following the demo steps.</p>
+      </div>
+      <div class="stage-card">
+        <div class="stage-num">3</div>
+        <h3>Learning Experience</h3>
+        <strong>What happens in the room</strong>
+        <p>Framing → live demo → prompt library handoff. No slides, no theory. The demo <em>is</em> the lesson.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:1.5rem;">
+      <strong>The meta-move:</strong> This workshop teaches backward design by <em>being</em> designed with backward design. If anyone notices, that's a great Q&amp;A moment.
+    </div>
+  </section>
+
+  <!-- ── SECTION 2: AGENDA ── -->
+  <section id="agenda">
+    <div class="section-label">Stage 3 — Learning Experience</div>
+    <div class="gold-line"></div>
+    <h2>30-Minute Agenda</h2>
+    <p>No slides. The browser and Canvas are the presentation.</p>
+
+    <div class="agenda">
+
+      <div class="agenda-item">
+        <div class="time-block">0:00<br>—<br>0:05</div>
+        <div class="agenda-content">
+          <strong>The Framing <span class="agenda-tag tag-demo">Intro</span></strong>
+          <span>One question: "How long does it take you to write an assignment page?" State the problem, name the solution. No setup preamble — start with the pain.</span>
+        </div>
+      </div>
+
+      <div class="agenda-item">
+        <div class="time-block">0:05<br>—<br>0:07</div>
+        <div class="agenda-content">
+          <strong>The CRISP Framework <span class="agenda-tag tag-demo">Demo</span></strong>
+          <span>Show this page. Point to the framework. "This is the only thing standing between bad AI output and usable output."</span>
+        </div>
+      </div>
+
+      <div class="agenda-item">
+        <div class="time-block">0:07<br>—<br>0:22</div>
+        <div class="agenda-content">
+          <strong>Live Build — 3 Tasks <span class="agenda-tag tag-live">Live</span></strong>
+          <span>Task 1 (4 min): Module overview from objectives. Task 2 (4 min): Assignment page + rubric. Task 3 (7 min): Student communication from a real scenario. Each follows: prompt → output → paste.</span>
+        </div>
+      </div>
+
+      <div class="agenda-item">
+        <div class="time-block">0:22<br>—<br>0:25</div>
+        <div class="agenda-content">
+          <strong>The Kit Handoff <span class="agenda-tag tag-demo">Demo</span></strong>
+          <span>Point to this page. "Everything I just did is documented here with copy-paste prompts. QR code at the front. Scan now or find the link in the symposium program."</span>
+        </div>
+      </div>
+
+      <div class="agenda-item">
+        <div class="time-block">0:25<br>—<br>0:30</div>
+        <div class="agenda-content">
+          <strong>Q&amp;A <span class="agenda-tag tag-qa">Open</span></strong>
+          <span>Keep two answers ready: "What AI should I use?" (Any. Context matters more than the model.) "Is this cheating?" (You're the expert. AI is the draft.)</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SECTION 3: WORKFLOW ── -->
+  <section id="workflow">
+    <div class="section-label">The Repeatable Workflow</div>
+    <div class="gold-line"></div>
+    <h2>5 Steps. Any Course. Every Time.</h2>
+    <p>Start here each time you build or update a course. AI accelerates every step — but you direct each one.</p>
+
+    <div class="workflow-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Write your learning objectives first</strong>
+          <p>Feed course name, level, and topic. Let AI draft; you edit. Objectives drive everything downstream.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Generate a module structure</strong>
+          <p>Paste objectives into the Module Builder prompt. Get a full week-by-week skeleton in one pass.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>Expand each module → assignments + rubrics</strong>
+          <p>One prompt per module. Output: instructions, rubric criteria, and a grading scheme table.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <strong>Draft student communications from real scenarios</strong>
+          <p>Describe the situation. AI drafts; you approve. Covers announcements, reminder emails, and feedback templates.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <strong>Paste into Canvas → format → publish</strong>
+          <p>Copy AI output directly into Canvas RCE. Apply DesignPLUS formatting for structure and accessibility.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 4: CRISP FRAMEWORK ── -->
+  <section id="crisp">
+    <div class="section-label">Prompt Craft</div>
+    <div class="gold-line"></div>
+    <h2>The CRISP Framework</h2>
+    <p>Bad AI output is almost always a bad brief. Five elements separate a usable first draft from a frustrating hallucination.</p>
+
+    <table class="crisp-table" aria-label="CRISP prompt framework">
+      <tbody>
+        <tr>
+          <td class="crisp-letter">C</td>
+          <td class="crisp-word">Context</td>
+          <td class="crisp-desc">Course name, student level, delivery modality, known pain points</td>
+        </tr>
+        <tr>
+          <td class="crisp-letter">R</td>
+          <td class="crisp-word">Role</td>
+          <td class="crisp-desc">Tell AI who it is: "You are an instructional designer for a graduate business analytics course."</td>
+        </tr>
+        <tr>
+          <td class="crisp-letter">I</td>
+          <td class="crisp-word">Instruction</td>
+          <td class="crisp-desc">The specific task: write, generate, draft, reformat, summarize</td>
+        </tr>
+        <tr>
+          <td class="crisp-letter">S</td>
+          <td class="crisp-word">Specs</td>
+          <td class="crisp-desc">Format, tone, length, accessibility constraints, platform (Canvas RCE)</td>
+        </tr>
+        <tr>
+          <td class="crisp-letter">P</td>
+          <td class="crisp-word">Proof</td>
+          <td class="crisp-desc">A standard or example to match: paste an existing assignment, rubric row, or email</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>Rule of thumb:</strong> If your prompt fits in one sentence, it probably needs more context. If it takes 10 minutes to write, that's the point — AI saves you the next hour.
+    </div>
+  </section>
+
+  <!-- ── SECTION 5: PROMPT LIBRARY ── -->
+  <section id="prompts">
+    <div class="section-label">Ready-to-Use Prompts</div>
+    <div class="gold-line"></div>
+    <h2>Prompt Library</h2>
+    <p>Copy, fill in the highlighted fields, paste into Claude or ChatGPT. These follow the CRISP framework.</p>
+
+    <!-- Prompt 1 -->
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span>01 — Module Structure Builder</span>
+        <button class="copy-btn" onclick="copyPrompt(this, 'p1')">Copy</button>
+      </div>
+      <div class="prompt-body" id="p1">You are an instructional designer for <span class="placeholder">[COURSE NAME]</span>, a <span class="placeholder">[undergraduate / graduate]</span> course delivered <span class="placeholder">[online / hybrid / in-person]</span>.
+
+Students struggle with <span class="placeholder">[known pain point, e.g., "connecting theory to practice"]</span>.
+
+Generate a module overview for Week <span class="placeholder">[#]</span>: <span class="placeholder">[TOPIC]</span>.
+
+Include:
+- 3 learning objectives (action-verb + measurable outcome)
+- A numbered sequence of activities (readings → practice → assessment)
+- An "estimated time" for each activity
+- One optional enrichment resource
+
+Format for Canvas LMS. Use plain language. Tone: <span class="placeholder">[professional / conversational / encouraging]</span>.</div>
+    </div>
+
+    <!-- Prompt 2 -->
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span>02 — Assignment + Rubric Generator</span>
+        <button class="copy-btn" onclick="copyPrompt(this, 'p2')">Copy</button>
+      </div>
+      <div class="prompt-body" id="p2">You are an instructional designer for <span class="placeholder">[COURSE NAME]</span>.
+
+Write a complete assignment description for: <span class="placeholder">[ASSIGNMENT TITLE]</span>
+
+Learning objectives this assignment addresses:
+- <span class="placeholder">[Objective 1]</span>
+- <span class="placeholder">[Objective 2]</span>
+
+Include:
+- Purpose statement (2 sentences, student-facing)
+- Task instructions (numbered steps)
+- Deliverable specifications (format, length, submission type)
+- A 4-point analytic rubric with 3 criteria
+
+Rubric format: criteria | Excellent (4) | Proficient (3) | Developing (2) | Incomplete (1)
+
+Output in plain text formatted for Canvas RCE paste.</div>
+    </div>
+
+    <!-- Prompt 3 -->
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span>03 — Student Communication</span>
+        <button class="copy-btn" onclick="copyPrompt(this, 'p3')">Copy</button>
+      </div>
+      <div class="prompt-body" id="p3">You are a faculty member teaching <span class="placeholder">[COURSE NAME]</span>.
+
+Situation: <span class="placeholder">[describe the scenario, e.g., "Several students missed the first quiz and haven't reached out. It's Week 3."]</span>
+
+Write a Canvas Announcement that:
+- Opens with empathy, not a lecture
+- States one clear action the student should take
+- Includes your contact method and availability
+- Closes with encouragement
+- Tone: <span class="placeholder">[warm / direct / formal]</span>
+- Length: under 150 words
+
+Do not use the phrase "I hope this email finds you well."</div>
+    </div>
+
+  </section>
+
+  <!-- ── SECTION 6: ARTIFACT REGISTRY ── -->
+  <section id="artifacts">
+    <div class="section-label">Quick-Start Kit — Tracked Artifacts</div>
+    <div class="gold-line"></div>
+    <h2>Everything You Need to Start Monday</h2>
+    <p>These artifacts were built alongside this workshop using the same workflow demonstrated live. Each is ready to copy, adapt, and use.</p>
+
+    <div class="artifact-grid">
+
+      <div class="artifact-card">
+        <div class="artifact-icon">📋</div>
+        <div class="artifact-type">Framework</div>
+        <h3>CRISP Prompt Framework</h3>
+        <p>5-element structure for context-rich prompts</p>
+      </div>
+
+      <div class="artifact-card">
+        <div class="artifact-icon">🔄</div>
+        <div class="artifact-type">Workflow</div>
+        <h3>5-Step Course Build</h3>
+        <p>Repeatable sequence from objectives to publish</p>
+      </div>
+
+      <div class="artifact-card">
+        <div class="artifact-icon">📝</div>
+        <div class="artifact-type">Prompt</div>
+        <h3>Module Builder Prompt</h3>
+        <p>Generates week overview from objectives</p>
+      </div>
+
+      <div class="artifact-card">
+        <div class="artifact-icon">📊</div>
+        <div class="artifact-type">Prompt</div>
+        <h3>Assignment + Rubric Prompt</h3>
+        <p>Full assignment description + 4-point rubric</p>
+      </div>
+
+      <div class="artifact-card">
+        <div class="artifact-icon">✉️</div>
+        <div class="artifact-type">Prompt</div>
+        <h3>Student Comms Prompt</h3>
+        <p>Scenario-based announcement drafting</p>
+      </div>
+
+      <div class="artifact-card">
+        <div class="artifact-icon">🏗️</div>
+        <div class="artifact-type">Canvas HTML</div>
+        <h3>DesignPLUS Starter Page</h3>
+        <p>Paste-ready Canvas home page template</p>
+      </div>
+
+    </div>
+
+    <div class="callout" style="margin-top:1.5rem;">
+      <strong>Coming soon:</strong> Canvas HTML templates for module overview, assignment page, and FAQ page — all DesignPLUS-formatted and USF-branded.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <strong>Symposium on AI in Higher Education</strong> · USF BUAN Hub ·
+  Built with GenAI using the workflow demonstrated in this session ·
+  <a href="https://github.com" style="color:rgba(255,255,255,0.5);">View source on GitHub</a>
+</footer>
+
+<script>
+function copyPrompt(btn, id) {
+  const el = document.getElementById(id);
+  // Get text without HTML tags
+  const text = el.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+// Highlight active nav on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-strip a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>
