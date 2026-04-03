@@ -1,5 +1,5 @@
 # AI-Assisted Course Design — Workshop Quick-Start Kit
-### AI Symposium | USF BUAN Hub
+### AI Symposium 
 
 > A 30-minute workshop demonstrating how faculty use GenAI to build Canvas LMS courses through a practical copy-and-create workflow.
 
@@ -54,4 +54,4 @@ This workshop uses **Backward Design** (Wiggins & McTighe):
 ---
 
 Built with the workflow demonstrated in the session.
-USF BUAN Hub · AI Symposium
+Eric C. Lacy·  AI Symposium
