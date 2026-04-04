@@ -7,7 +7,7 @@
 
 ## 🚀 Live Site
 
-**[View Workshop Site →]([https://YOUR-USERNAME.github.io/ai-canvas-workshop/]))**
+**[View Workshop Site → ([(https://ericlacy.github.io/ai-canvas-dev-workshop])
 
 Scan the QR code at the workshop or visit the link above for the full quick-start kit.
 
@@ -25,7 +25,7 @@ Scan the QR code at the workshop or visit the link above for the full quick-star
 1. Fork or clone this repo
 2. Go to **Settings → Pages**
 3. Source: **Deploy from a branch** → `main` → `/ (root)`
-4. Save — your site is live at `https://YOUR-USERNAME.github.io/REPO-NAME/`
+4. Save — your site is live at [https://ericlacy.github.io/ai-canvas-dev-workshop])
 
 ---
 
