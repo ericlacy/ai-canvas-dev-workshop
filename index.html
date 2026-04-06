@@ -808,6 +808,84 @@
     <h2>Demo Prompts</h2>
     <p>These are the prompts run live during the session. Highlighted fields show what to swap for your own course. Copy and run as-is to reproduce the BUS 3410 demo, or replace the highlighted content with your own course details.</p>
 
+    <!-- Prompt: Welcome Page -->
+    <div style="margin:1.5rem 0 0.5rem;">
+      <p style="font-size:0.88rem;color:var(--muted);line-height:1.75;margin:0 0 0.6rem;">
+        This prompt builds the <strong style="color:var(--ink);">Course Welcome Page</strong> — the first thing students see when they open the course. It generates a student-facing introduction that sets expectations, orients students to the course structure, and provides a clear first-week checklist. The context supplied here (course name, modality, duration, instructor persona) directs AI to write with the right tone and level of detail. The output is a complete Canvas page — purpose statement, what-to-expect sections, weekly time commitment, technology requirements, and a call-to-action button linking to the Course Home page.
+      </p>
+      <p style="font-size:0.82rem;color:var(--usf-green);font-family:'DM Mono',monospace;margin:0 0 0.75rem;">
+        Output: Welcome message · Course structure overview · Weekly time commitment · Tool requirements · Week 1 checklist · CTA to Course Home
+      </p>
+    </div>
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span>00 — Course Welcome Page Builder</span>
+        <button class="copy-btn" onclick="copyPrompt(this, 'pwelcome')">Copy</button>
+      </div>
+      <div class="prompt-body" id="pwelcome">You are an instructional designer for <span class="placeholder">BUS 3410: Data Storytelling for Business</span>, a <span class="placeholder">7-week accelerated undergraduate course delivered online</span>.
+
+This is the first page students see. It must orient, reassure, and activate — not lecture.
+
+Generate a complete Canvas Welcome page including:
+- A 2-sentence welcome statement that conveys the value of the course, not just its title
+- A "How This Course Works" section: 3-module arc (See It · Say It · Show It), module unlock sequence
+- A weekly time commitment breakdown (reading, lectures, projects — estimate hours each)
+- A "What You Will Need" section listing required tools: <span class="placeholder">[Tableau Public, course dataset library, Zoom/Canvas Studio]</span>
+- A Week 1 checklist (5 items: syllabus, welcome video, intro discussion, style guide download, Module 1 open)
+- An instructor card: name, title, contact method, appointment link placeholder
+- A CTA button: "Go to Course Home →"
+
+Tone: <span class="placeholder">direct and encouraging</span>. This is not a syllabus. Write like a person, not a policy document.
+Format for Canvas RCE. Do not use bullet points for the welcome statement.</div>
+    </div>
+
+    <!-- Prompt: Course Design Doc -->
+    <div style="margin:1.5rem 0 0.5rem;">
+      <p style="font-size:0.88rem;color:var(--muted);line-height:1.75;margin:0 0 0.6rem;">
+        This prompt generates a <strong style="color:var(--ink);">Course Design Document</strong> — the backward design artifact that feeds the entire Canvas build workflow. Rather than building Canvas pages directly, this prompt produces the structured planning document: course-level outcomes, assessment evidence, and module sequence. That document then becomes the source for every subsequent prompt. Run this first when starting a new course; use the output as the input to all other prompts in this library.
+      </p>
+      <p style="font-size:0.82rem;color:var(--usf-green);font-family:'DM Mono',monospace;margin:0 0 0.75rem;">
+        Output: Course description · 5 learning outcomes · Assessment map with point values · 3-module sequence with weekly activities · CLO alignment per module
+      </p>
+    </div>
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span>00 — Course Design Document Generator</span>
+        <button class="copy-btn" onclick="copyPrompt(this, 'pcdd')">Copy</button>
+      </div>
+      <div class="prompt-body" id="pcdd">You are an instructional designer using Backward Design (Wiggins &amp; McTighe).
+
+I am building a course with the following parameters:
+- Course: <span class="placeholder">BUS 3410: Data Storytelling for Business</span>
+- Level: <span class="placeholder">Undergraduate</span>
+- Duration: <span class="placeholder">7 weeks · 3 modules</span>
+- Delivery: <span class="placeholder">Online / Asynchronous</span>
+- Known student challenge: <span class="placeholder">Students can produce charts but cannot argue with data — they treat visuals as conclusions rather than evidence</span>
+
+Generate a complete Course Design Document with three stages:
+
+STAGE 1 — DESIRED RESULTS
+- 1-paragraph course description (student-facing)
+- 5 course-level learning outcomes using Bloom's action verbs (levels: Understand → Apply → Analyze → Evaluate → Create)
+- List of 3–4 transferable professional skills
+
+STAGE 2 — ACCEPTABLE EVIDENCE
+- Assessment map: assessment name | module | point value | CLOs addressed
+- Include 3 summative assessments + 1 participation/discussion grade
+- Total points: <span class="placeholder">500</span>
+- Grading scale: A/B/C/D thresholds
+
+STAGE 3 — LEARNING EXPERIENCE
+- 3 module blocks, each containing:
+  · Module title and weeks covered
+  · 3 module-level objectives mapped to CLOs
+  · Weekly activity sequence (what students do each week, with estimated time)
+  · Summative assessment description (2 sentences)
+  · CLO alignment statement
+
+Format as a structured planning document, not a syllabus. Use clear headings. This document will be used as input to an AI-assisted Canvas build workflow.</div>
+    </div>
+
     <!-- Prompt 4 -->
     <div style="margin:1.5rem 0 0.5rem;">
       <p style="font-size:0.88rem;color:var(--muted);line-height:1.75;margin:0 0 0.6rem;">
@@ -914,7 +992,7 @@ Format for Canvas RCE. Tone: confident and motivating. This is the finish line.<
     <div style="border-top:2px solid var(--border); margin:2.5rem 0 2rem;"></div>
 
     <!-- ── PROMPT LIBRARY ── -->
-    <div class="section-label">Prompt Library — Adapt for Any Course</div>
+    <div id="prompt-library" class="section-label">Prompt Library — Adapt for Any Course</div>
     <h2 style="margin-bottom:0.5rem;">Prompt Library</h2>
     <p>General-purpose templates built on the CRISP framework. Replace every highlighted field with your own course details. These work for any course, any level, any modality.</p>
 
@@ -1017,7 +1095,7 @@ Do not use the phrase "I hope this email finds you well."</div>
         <p>Paste your objectives — get a full module overview with activity sequence</p>
       </a>
 
-      <a href="#prompts" class="artifact-card" style="text-decoration:none;color:inherit;">
+      <a href="#prompt-library" class="artifact-card" style="text-decoration:none;color:inherit;">
         <div class="artifact-icon">📊</div>
         <div class="artifact-type">Prompt</div>
         <h3>Assignment + Rubric Prompt</h3>
@@ -1059,10 +1137,49 @@ Do not use the phrase "I hope this email finds you well."</div>
         <p>The BUS 3410 backward design artifact — outcomes, assessments, module sequence. Feed this into the prompts above.</p>
       </a>
 
+      <a href="https://usfca.instructure.com/courses/1610180" target="_blank" class="artifact-card" style="text-decoration:none;color:inherit;">
+        <div class="artifact-icon">🎓</div>
+        <div class="artifact-type">Live Canvas Course</div>
+        <h3>BUS 3410 Demo Course</h3>
+        <p>The actual Canvas site built from these prompts — Welcome page, Course Home, all three module overviews</p>
+      </a>
+
+      <a href="DesignPLUS-Canvas-Prompt.rtf" download class="artifact-card" style="text-decoration:none;color:inherit;">
+        <div class="artifact-icon">🏗</div>
+        <div class="artifact-type">System Prompt</div>
+        <h3>DesignPLUS Page Builder</h3>
+        <p>Complete DesignPLUS UX prompt v1.3 — paste into a Claude Project to build DesignPLUS-formatted Canvas pages</p>
+      </a>
+
     </div>
 
     <div class="callout" style="margin-top:1.5rem;">
       <strong>How it all connects:</strong> Download the Course Design Document → copy a prompt → paste your course details → get Canvas-ready content. The demo course (BUS 3410) runs the full loop end to end.
+    </div>
+
+    <!-- Canvas Live Course + DesignPLUS download -->
+    <div style="margin-top:1rem; display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--card-shadow);">
+        <div style="background:var(--usf-green-dark); padding:0.65rem 1rem; display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--usf-gold); font-weight:500;">🎓 BUS 3410 — Live Canvas Course</span>
+          <a href="https://usfca.instructure.com/courses/1610180" target="_blank" style="background:rgba(253,187,48,0.2); border:1px solid rgba(253,187,48,0.4); color:var(--usf-gold); font-size:0.68rem; font-family:'DM Mono',monospace; padding:0.15rem 0.5rem; border-radius:4px; text-decoration:none;">Open in Canvas →</a>
+        </div>
+        <div style="padding:1rem; background:#FAFAF8; font-size:0.8rem; color:var(--muted); line-height:1.7;">
+          The demo course built live during this session. View the actual Canvas pages produced by the prompts above — Welcome page, Course Home, and all three module overview pages.
+        </div>
+      </div>
+
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--card-shadow);">
+        <div style="background:var(--usf-green-dark); padding:0.65rem 1rem; display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--usf-gold); font-weight:500;">🏗 DesignPLUS UX Page Builder</span>
+          <a href="DesignPLUS-Canvas-Prompt.rtf" download style="background:rgba(253,187,48,0.2); border:1px solid rgba(253,187,48,0.4); color:var(--usf-gold); font-size:0.68rem; font-family:'DM Mono',monospace; padding:0.15rem 0.5rem; border-radius:4px; text-decoration:none;">⬇ Download .rtf</a>
+        </div>
+        <div style="padding:1rem; background:#FAFAF8; font-size:0.8rem; color:var(--muted); line-height:1.7;">
+          The complete DesignPLUS system prompt — v1.3. Paste into a Claude Project as custom instructions. Includes Course Configuration Block template and Course Map template.
+        </div>
+      </div>
+
     </div>
 
     <div style="margin-top:1.25rem; display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
