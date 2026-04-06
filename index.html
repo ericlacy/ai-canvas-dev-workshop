@@ -33,15 +33,128 @@
   }
 
   /* ─── HERO ─────────────────────────────────────────── */
+  body.scroll-locked {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: 0;
+  }
+
   .hero {
     background: var(--usf-green);
     background-image:
       radial-gradient(ellipse at 80% 20%, rgba(253,187,48,0.12) 0%, transparent 60%),
       radial-gradient(ellipse at 10% 80%, rgba(0,107,78,0.4) 0%, transparent 50%);
     color: var(--white);
+    min-height: 100vh;
     padding: 3rem 1.5rem 2.5rem;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    box-sizing: border-box;
+  }
+
+  .hero .container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 6rem);
+  }
+
+  /* scroll-to-continue cue */
+  .scroll-cue {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.68rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    animation: bob 2s ease-in-out infinite;
+    transition: opacity 0.4s;
+  }
+  .scroll-cue .arrow {
+    width: 20px; height: 20px;
+    border-right: 2px solid rgba(253,187,48,0.5);
+    border-bottom: 2px solid rgba(253,187,48,0.5);
+    transform: rotate(45deg);
+    margin-top: 4px;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* QR badge — inline in hero body row */
+  .hero-qr {
+    background: rgba(255,255,255,0.96);
+    border-radius: 10px;
+    padding: 0.6rem;
+    border: 2px solid rgba(253,187,48,0.55);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    flex-shrink: 0;
+  }
+  .hero-qr img { display: block; border-radius: 4px; }
+  .hero-qr span {
+    font-size: 0.55rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--usf-green);
+    font-weight: 700;
+  }
+
+  /* hero top row: title left, QR right */
+  .hero-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .hero-top-left { flex: 1; min-width: 0; }
+
+  /* presenter strip */
+  .hero-presenter {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(253,187,48,0.25);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+  .presenter-info { display: flex; flex-direction: column; gap: 0.15rem; }
+  .presenter-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .presenter-role {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.65);
+    font-family: 'DM Mono', monospace;
+  }
+  .presenter-date {
+    font-size: 0.78rem;
+    color: var(--usf-gold);
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-align: right;
   }
 
   .hero::before {
@@ -211,7 +324,7 @@
 
   .agenda-item {
     display: grid;
-    grid-template-columns: 70px 1fr;
+    grid-template-columns: 1fr;
     gap: 1rem;
     align-items: start;
     padding: 1rem 0;
@@ -450,7 +563,10 @@
   .callout strong { color: var(--usf-green); }
 
   @media (max-width: 600px) {
-    .hero { padding: 2rem 1.25rem; }
+    .hero { padding: 2rem 1.25rem 5rem; }
+    .hero-top { flex-direction: column; align-items: flex-start; }
+    .hero-qr { align-self: flex-start; }
+    .hero-qr img { width: 70px; height: 70px; }
     .stages { grid-template-columns: 1fr; }
     .artifact-grid { grid-template-columns: 1fr 1fr; }
     .crisp-word { display: none; }
@@ -462,21 +578,48 @@
 <!-- HERO -->
 <header class="hero">
   <div class="container">
-    <div class="badge">Symposium on AI in Higher Education · 30-min Workshop</div>
-    <h1>Build Canvas Courses <em>Faster</em> with GenAI</h1>
-    <p class="hero-sub">A practical copy-and-create workflow for faculty — no technical background required.</p>
+
+    <!-- title + QR row -->
+    <div class="hero-top">
+      <div class="hero-top-left">
+        <div class="badge">Symposium on AI in Higher Education · 30-min Workshop</div>
+        <h1>Build Canvas Courses <em>Faster</em> with GenAI</h1>
+        <p class="hero-sub">A practical copy-and-create workflow for faculty — no technical background required.</p>
+      </div>
+      <div class="hero-qr" aria-label="QR code — workshop materials">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAIcCAIAAAAynOArAAAMi0lEQVR4nO3cQXLkxhVFUVHBbXkZXqWW4YVBE03sAZV2X3/+BM8Zd1ShALBv5OR9PM/zGwAUfv/uCwDgPUQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQERUAMqICQEZUAMiICgCZz+qDPv75j+qjrvP88a+//Tcn96f6nMrJ9ZzYds3bnsXkNZ/Ydn9O3PiublPdQycVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQERUAMqICQEZUAMhk218nqm2ZSdu2gLZtLlW2bW1Vn3Pjs6hs2zSrbLueE5PvoZMKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGRGt79OTG7UTG743LiDNHk92zaybtwZO7HtPldu/NupbNsic1IBICMqAGREBYCMqACQERUAMqICQEZUAMiICgAZUQEgIyoAZEQFgMy67a+3qraJtn3ONts2l7btp924f7Xtd/E1JxUAMqICQEZUAMiICgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyNj+eqHJ/avqu7btX518zuR9PjF5D0/YsvuZnFQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBILNu+8s+z4zqPle7TCcmP8fe1B7bNtZO/OTn7qQCQEZUAMiICgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKAJnR7a8bN3xuNLlb5XN8zv/btuvx/9jXnFQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBIPPxPM93XwN/eesu04kb95Sq337ixvszafJZ8DUnFQAyogJARlQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIXLn9VW1kbfuuSrUTVe2MbXsW27bR3noPt/1dVG58f6rvOuGkAkBGVADIiAoAGVEBICMqAGREBYCMqACQERUAMqICQEZUAMiICgCZbPtr2xbQjftXN97Dbdcz6cbf/tYNsW17XCdu/D/qhJMKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGRGt78q2zaXJq/nhI2sX/fWZ7rtWWzbrZr01v8znVQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBIJNtfx192bKtm5+8TfTWfbDJjay3vj837oyduPF53XjNTioAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBkRAWAjKgAkBnd/jqxbXfoxo2sG6/5xI0bWTfuX03atlt143bcNk4qAGREBYCMqACQERUAMqICQEZUAMiICgAZUQEgIyoAZEQFgIyoAJDJtr8mN4Vu3JKqvmvbfZ78XZP3Z9tzn7TtmVa2Xc+Jbe/zCScVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQERUAMqICQEZUAMhk219HX7ZsU2jbrs62LbIT2+7zW9+NyuR23Iltfzs3vj/b3lUnFQAyogJARlQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIXLn9te27TmzbXJq0bb9o27PYdn9O3HgPT7z1d01yUgEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBkRAWAzLrtrxM3bnZt23fatsN2wnP/9e86Ub0bk59zwv359e864aQCQEZUAMiICgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKAJnP6oO27dhs28Opvqv6XZXJ69m2uTRp8ndt2626cfOtsu3/1RNOKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQyba/TmzbsXnrd1Vu/O3btshO3LiRtW0b7cS257XtuypOKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQ+Xie57uv4d9M7oNN7hdtu54TNz6Lbfd5228/ceP1bNu/2vZ3MclJBYCMqACQERUAMqICQEZUAMiICgAZUQEgIyoAZEQFgIyoAJARFQAyo9tfb90mmjS5gzS5X/STN7JObNuJ2va3s+3vonLj35eTCgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBkPr/7Av4X1Y7NjVtSN+4XnZh8FtV9nty/2rbvNGny72LS5Ls6yUkFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKj21/btra27Wi99Xoq27atbtzRutG2575te/DE5Hc5qQCQERUAMqICQEZUAMiICgAZUQEgIyoAZEQFgIyoAJARFQAyogJAZnT7a9uW1Ikb93kmt5JOPuetm2aT97n6rm3vxokb/9+YfF4nJp+7kwoAGVEBICMqAGREBYCMqACQERUAMqICQEZUAMiICgAZUQEgIyoAZD6e5/nua/ivbdtcOjG583Ni22bXjdtWJ258Vye99bdPvmMnbH8BcCVRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGSy7a9tm0uT7Fa9z+Tu2Ym3vmMnbrzmE299pk4qAGREBYCMqACQERUAMqICQEZUAMiICgAZUQEgIyoAZEQFgIyoAJD5/O4L+E+TeziT3rrzM3k9k3tc2+7hjSaf17bvuvEdq67HSQWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQERUAMqPbX5MbR5O7Oie2bRNt+67Ktud+4sZrvtHkrte2jb5JTioAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBkRAWAjKgAkPl4nmfuywb3cLZt+GzbPZvcBzuxbSvpxk2zGzff3vr+/GROKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQWbf9VXnrzs+2jaNtG1CVbff5xFv/vm7c8dt2f05U1+ykAkBGVADIiAoAGVEBICMqAGREBYCMqACQERUAMqICQEZUAMiICgCZz+qDJvdwqq2byc2c6v7cuE207Zq3vT8nqndj0rZnuu3+VKq/r4qTCgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBksu2vbbtMlcndqm1bSZVtz/TEtj2lG+/hNpP7eyfeulfmpAJARlQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAmY/neZoPunD/6sTk5tK2nZ9tW2Rv3WGrvPWa3+qt76GTCgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBksu0vvvbWTapqu2lyQ4yvbXsPt71jJyavedv9cVIBICMqAGREBYCMqACQERUAMqICQEZUAMiICgAZUQEgIyoAZEQFgMxn9UE/eXPpZDNncsNn2z7Y5Hed2HY9Jya34yrVNb/1b+fGXa8TTioAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBkRAWAjKgAkMm2v068dXNpUrUXtO133bhxtO2ab9wHOzF5PTf+H7Xtmp1UAMiICgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAzuv11ws7P127cmzoxuWlW/fbJHa1tz+vEtvu8bdPsxLZduBNOKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQWbf99VY3bi5NXvO275rc9Trx1k2zE9s2uybvT/XcJ3cOnVQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBIGP7a4i9oBnVfa6exbbnXpn8XTe+h5XJHb/qu5xUAMiICgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASCzbvvrJ+/8nLjx/kzuDlW2bYidmLyHk7/rxLbr2fYsJq/HSQWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQERUAMqPbX9v2eX6yyb2gbbteJybvT/Vd23bGtm1STT6v6lnc+LfjpAJARlQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAmY/neb77GgB4CScVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQERUAMqICQEZUAMiICgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBkRAWAzJ/Mb8IMBD1uGQAAAABJRU5ErkJggg==" alt="Scan for workshop materials" width="90" height="90">
+        <span>Scan for materials</span>
+      </div>
+    </div>
+
+    <!-- meta + presenter strip -->
     <div class="hero-meta">
       <span>⏱ 30 minutes</span>
       <span>📋 Intro + Demo + Q&amp;A</span>
       <span>📦 Quick-start kit included</span>
     </div>
+    <div class="hero-presenter">
+      <div class="presenter-info">
+        <span class="presenter-name">Eric Lacy</span>
+        <span class="presenter-role">Term Professor &nbsp;·&nbsp; School of Management</span>
+        <span class="presenter-role">Business Analytics &amp; Information Systems</span>
+      </div>
+      <span class="presenter-date">April 7, 2026</span>
+    </div>
+
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="scroll-cue" id="scroll-cue" onclick="unlockScroll()" aria-label="Scroll to continue">
+    <span>Scroll</span>
+    <div class="arrow"></div>
   </div>
 </header>
 
 <!-- NAV -->
 <nav class="nav-strip" aria-label="Workshop sections">
   <div class="container" style="display:flex; padding:0;">
-    <a href="#design">Backward Design</a>
+    <a href="#design">Course Design Artifact</a>
     <a href="#agenda">Agenda</a>
     <a href="#workflow">Workflow</a>
     <a href="#crisp">CRISP Framework</a>
@@ -487,42 +630,43 @@
 
 <main class="container">
 
-  <!-- ── SECTION 1: BACKWARD DESIGN ── -->
+  <!-- ── SECTION 1: COURSE DESIGN ARTIFACT ── -->
   <section id="design">
-    <div class="section-label">Stage 1 of 3 — Backward Design</div>
+    <div class="section-label">The Problem Worth Solving</div>
     <div class="gold-line"></div>
-    <h2>Start with the End in Mind</h2>
-    <p>This workshop uses <strong>Backward Design</strong> (Wiggins &amp; McTighe). We defined what attendees must <em>do</em> after 30 minutes, then built the session around that — not the other way around.</p>
+    <h2>You Did the Hard Work. Canvas Is Still Empty.</h2>
+    <p>Backward Design produces a rich artifact — outcomes, assessment evidence, a sequenced learning experience. That document represents real intellectual work. And then you open Canvas and face a blank page.</p>
+    <p>The design is done. The <em>production</em> hasn't started. Every module overview, assignment description, rubric, and student communication still has to be written — from scratch, in the RCE editor, one page at a time.</p>
 
     <div class="stages">
       <div class="stage-card">
         <div class="stage-num">1</div>
-        <h3>Desired Results</h3>
-        <strong>What attendees can do</strong>
-        <p>Write a context-rich prompt. Run a live Canvas task with AI. Take home a repeatable workflow and copy-paste kit.</p>
+        <h3>The Translation Gap</h3>
+        <strong>Design ≠ Delivery</strong>
+        <p>A Course Design Document and a Canvas site are two different things. Converting one into the other is hours of formatting, writing, and copy-pasting — none of which improves the pedagogy.</p>
       </div>
       <div class="stage-card">
         <div class="stage-num">2</div>
-        <h3>Acceptable Evidence</h3>
-        <strong>How we know it worked</strong>
-        <p>Attendees leave with one AI-generated Canvas artifact they produced (or could produce) by following the demo steps.</p>
+        <h3>The Time Tax</h3>
+        <strong>Every page. Every term.</strong>
+        <p>Assignment descriptions. Rubric tables. Module overviews. Student announcements. Faculty write all of it — most of it from memory, most of it from scratch, most of it under deadline pressure.</p>
       </div>
       <div class="stage-card">
         <div class="stage-num">3</div>
-        <h3>Learning Experience</h3>
-        <strong>What happens in the room</strong>
-        <p>Framing → live demo → prompt library handoff. No slides, no theory. The demo <em>is</em> the lesson.</p>
+        <h3>The Missed Opportunity</h3>
+        <strong>The context is already there</strong>
+        <p>Your outcomes, assessments, and module sequence are exactly what AI needs to produce usable first drafts. The Course Design Artifact is the prompt — it just hasn't been used that way yet.</p>
       </div>
     </div>
 
     <div class="callout" style="margin-top:1.5rem;">
-      <strong>The meta-move:</strong> This workshop teaches backward design by <em>being</em> designed with backward design. If anyone notices, that's a great Q&amp;A moment.
+      <strong>The shift:</strong> Stop treating the Course Design Document as the finish line. It's the starting gun for an AI-assisted build that turns hours of production into minutes.
     </div>
   </section>
 
   <!-- ── SECTION 2: AGENDA ── -->
   <section id="agenda">
-    <div class="section-label">Stage 3 — Learning Experience</div>
+    <div class="section-label">30-Minute Session Plan</div>
     <div class="gold-line"></div>
     <h2>30-Minute Agenda</h2>
     <p>No slides. The browser and Canvas are the presentation.</p>
@@ -530,42 +674,37 @@
     <div class="agenda">
 
       <div class="agenda-item">
-        <div class="time-block">0:00<br>—<br>0:05</div>
         <div class="agenda-content">
-          <strong>The Framing <span class="agenda-tag tag-demo">Intro</span></strong>
-          <span>One question: "How long does it take you to write an assignment page?" State the problem, name the solution. No setup preamble — start with the pain.</span>
+          <strong>The Problem <span class="agenda-tag tag-demo">Intro</span></strong>
+          <span>Faculty spend hours translating a finished Course Design Document into Canvas pages. The design is done — the production hasn't started. This session is about closing that gap.</span>
         </div>
       </div>
 
       <div class="agenda-item">
-        <div class="time-block">0:05<br>—<br>0:07</div>
         <div class="agenda-content">
-          <strong>The CRISP Framework <span class="agenda-tag tag-demo">Demo</span></strong>
-          <span>Show this page. Point to the framework. "This is the only thing standing between bad AI output and usable output."</span>
+          <strong>The CRISP Prompt Framework <span class="agenda-tag tag-demo">Framework</span></strong>
+          <span>Five elements separate a usable AI draft from a frustrating one: Context, Role, Instruction, Specs, and Proof. The Course Design Document supplies most of them already.</span>
         </div>
       </div>
 
       <div class="agenda-item">
-        <div class="time-block">0:07<br>—<br>0:22</div>
         <div class="agenda-content">
-          <strong>Live Build — 3 Tasks <span class="agenda-tag tag-live">Live</span></strong>
-          <span>Task 1 (4 min): Module overview from objectives. Task 2 (4 min): Assignment page + rubric. Task 3 (7 min): Student communication from a real scenario. Each follows: prompt → output → paste.</span>
+          <strong>Live Build — 3 Canvas Tasks <span class="agenda-tag tag-live">Live</span></strong>
+          <span>Task 1: Module overview page from course objectives. Task 2: Assignment description and analytic rubric. Task 3: Student announcement drafted from a real classroom scenario. Each task follows the same sequence — prompt, generate, paste.</span>
         </div>
       </div>
 
       <div class="agenda-item">
-        <div class="time-block">0:22<br>—<br>0:25</div>
         <div class="agenda-content">
-          <strong>The Kit Handoff <span class="agenda-tag tag-demo">Demo</span></strong>
-          <span>Point to this page. "Everything I just did is documented here with copy-paste prompts. QR code at the front. Scan now or find the link in the symposium program."</span>
+          <strong>Quick-Start Kit Walkthrough <span class="agenda-tag tag-demo">Resources</span></strong>
+          <span>Every prompt used in the demo, the five-step repeatable workflow, the BUS 3410 demo course pages, and the Course Design Document are all available at the workshop URL. Scan the QR code on the title slide or at the top of this page.</span>
         </div>
       </div>
 
       <div class="agenda-item">
-        <div class="time-block">0:25<br>—<br>0:30</div>
         <div class="agenda-content">
           <strong>Q&amp;A <span class="agenda-tag tag-qa">Open</span></strong>
-          <span>Keep two answers ready: "What AI should I use?" (Any. Context matters more than the model.) "Is this cheating?" (You're the expert. AI is the draft.)</span>
+          <span>Common questions addressed: which AI tools work best for Canvas course development, how to handle institutional policy on AI use, and how to adapt this workflow for courses already in progress.</span>
         </div>
       </div>
 
@@ -583,8 +722,8 @@
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-body">
-          <strong>Write your learning objectives first</strong>
-          <p>Feed course name, level, and topic. Let AI draft; you edit. Objectives drive everything downstream.</p>
+          <strong>Start with your Course Design Artifact</strong>
+          <p>Your Backward Design work — outcomes, assessments, sequence — is the context AI needs. The richer the artifact, the stronger the first draft.</p>
         </div>
       </div>
       <div class="step">
@@ -734,6 +873,84 @@ Write a Canvas Announcement that:
 Do not use the phrase "I hope this email finds you well."</div>
     </div>
 
+    <!-- Prompt 4 -->
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span>04 — Module 1 Page Builder (See It)</span>
+        <button class="copy-btn" onclick="copyPrompt(this, 'p4')">Copy</button>
+      </div>
+      <div class="prompt-body" id="p4">You are an instructional designer for BUS 3410: Data Storytelling for Business, a 7-week accelerated undergraduate course delivered online.
+
+Module 1 covers Weeks 1–2. Title: "See It: Foundations of Data Visualization."
+
+Students struggle with selecting the right chart for their data and often default to bar charts for everything.
+
+Generate a complete Canvas module overview page including:
+- A 2-sentence module purpose statement (student-facing, energetic tone)
+- 3 measurable learning objectives using Bloom's action verbs
+- A sequenced activity list:
+    Week 1: Reading + ungraded practice quiz
+    Week 2: Graded assignment (Visualization Critique, 100 pts)
+- Estimated time for each activity
+- One "Pro Tip" callout with a practical insight students can apply immediately
+- Due date placeholder: [INSERT WEEK 2 DATE]
+
+Format for Canvas RCE. Use plain language. Tone: direct and encouraging.
+Do not use the phrase "In this module, you will."</div>
+    </div>
+
+    <!-- Prompt 5 -->
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span>05 — Module 2 Page Builder (Say It)</span>
+        <button class="copy-btn" onclick="copyPrompt(this, 'p5')">Copy</button>
+      </div>
+      <div class="prompt-body" id="p5">You are an instructional designer for BUS 3410: Data Storytelling for Business, a 7-week accelerated undergraduate course delivered online.
+
+Module 2 covers Weeks 3–5. Title: "Say It: Building the Data Narrative."
+
+Students often produce technically accurate visualizations but struggle to connect data findings to a clear recommendation. They treat charts as conclusions rather than evidence.
+
+Generate a complete Canvas module overview page including:
+- A 2-sentence module purpose statement (student-facing)
+- 3 measurable learning objectives
+- A sequenced activity list:
+    Week 3: SCR Framework lecture (22 min) + reading
+    Week 4: Storyboard draft + peer review discussion
+    Week 5: Graded assignment (Narrative Memo, 150 pts)
+- Estimated time for each activity
+- One "Watch Out" callout warning students about the most common mistake in this module
+- Due date placeholders: [PEER REVIEW DUE DATE] and [MEMO DUE DATE]
+
+Format for Canvas RCE. Tone: direct and professional.</div>
+    </div>
+
+    <!-- Prompt 6 -->
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span>06 — Module 3 Page Builder (Show It)</span>
+        <button class="copy-btn" onclick="copyPrompt(this, 'p6')">Copy</button>
+      </div>
+      <div class="prompt-body" id="p6">You are an instructional designer for BUS 3410: Data Storytelling for Business, a 7-week accelerated undergraduate course delivered online.
+
+Module 3 covers Weeks 6–7. Title: "Show It: Presenting to Decision Makers."
+
+This is the capstone module. Students deliver a 10-minute live data presentation to a simulated executive panel. The most common failure point: students read from their slides instead of speaking to the data.
+
+Generate a complete Canvas module overview page including:
+- A 2-sentence module purpose statement that conveys the stakes and the opportunity
+- 3 measurable learning objectives
+- A sequenced activity list:
+    Week 6: Dry run (recorded, ungraded) + Peer Q&A Feedback Forum
+    Week 7: Live Executive Presentation (200 pts)
+- Estimated time for each activity
+- One "What Executives Notice" callout with 3 specific behaviors that distinguish strong presenters
+- Self-assessment checklist (5 items) students complete before submitting their final recording
+- Due date placeholders: [DRY RUN DATE] and [FINAL PRESENTATION DATE]
+
+Format for Canvas RCE. Tone: confident and motivating. This is the finish line.</div>
+    </div>
+
   </section>
 
   <!-- ── SECTION 6: ARTIFACT REGISTRY ── -->
@@ -781,28 +998,103 @@ Do not use the phrase "I hope this email finds you well."</div>
       </div>
 
       <div class="artifact-card">
-        <div class="artifact-icon">🏗️</div>
+        <div class="artifact-icon">🏠</div>
         <div class="artifact-type">Canvas HTML</div>
-        <h3>DesignPLUS Starter Page</h3>
-        <p>Paste-ready Canvas home page template</p>
+        <h3>Course Home Page</h3>
+        <p>7-week course map with 3 modules, grading table, quick links</p>
+      </div>
+
+      <div class="artifact-card">
+        <div class="artifact-icon">👋</div>
+        <div class="artifact-type">Canvas HTML</div>
+        <h3>Course Welcome Page</h3>
+        <p>Instructor intro, expectations, tools, and quick-start CTA</p>
+      </div>
+
+      <div class="artifact-card">
+        <div class="artifact-icon">📦</div>
+        <div class="artifact-type">Prompts</div>
+        <h3>Module 1–3 Page Builders</h3>
+        <p>One CRISP prompt per module — generates the full Canvas overview page</p>
       </div>
 
     </div>
 
     <div class="callout" style="margin-top:1.5rem;">
-      <strong>Coming soon:</strong> Canvas HTML templates for module overview, assignment page, and FAQ page — all DesignPLUS-formatted and USF-branded.
+      <strong>Demo course:</strong> BUS 3410 — Data Storytelling for Business. A fictitious 7-week, 3-module course. The Course Design Document below is the source artifact — feed it into the CRISP prompts to regenerate all Canvas outputs.
+    </div>
+
+    <div style="margin-top:1rem; background:var(--white); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--card-shadow);">
+      <div style="background:var(--usf-green-dark); padding:0.65rem 1rem; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--usf-gold); font-weight:500;">📄 BUS 3410 — Course Design Document</span>
+        <a href="course-design-doc.docx" download style="background:rgba(253,187,48,0.2); border:1px solid rgba(253,187,48,0.4); color:var(--usf-gold); font-size:0.68rem; font-family:'DM Mono',monospace; padding:0.15rem 0.5rem; border-radius:4px; text-decoration:none;">⬇ Download .docx</a>
+      </div>
+      <div style="padding:1rem; background:#FAFAF8; font-size:0.8rem; color:var(--muted); line-height:1.8;">
+        The backward design artifact that feeds the entire workflow. Three stages, three modules, full assessment map.<br>
+        <span style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--usf-green);">Stage 1: Outcomes &nbsp;·&nbsp; Stage 2: Assessment evidence &nbsp;·&nbsp; Stage 3: Module sequence + weekly pace</span>
+      </div>
+    </div>
+
+    <div style="margin-top:1.25rem; display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--card-shadow);">
+        <div style="background:var(--usf-green); padding:0.65rem 1rem; display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--usf-gold); font-weight:500;">👋 Welcome Page</span>
+          <a href="canvas-welcome-page.html" target="_blank" style="background:rgba(253,187,48,0.2); border:1px solid rgba(253,187,48,0.4); color:var(--usf-gold); font-size:0.68rem; font-family:'DM Mono',monospace; padding:0.15rem 0.5rem; border-radius:4px; text-decoration:none;">Open →</a>
+        </div>
+        <div style="padding:1rem; background:#FAFAF8; font-size:0.8rem; color:var(--muted); line-height:1.7;">
+          Instructor intro card · Course structure · Time commitment · Tool links · Quick-start CTA<br>
+          <code style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--usf-green);">.dp-panels-wrapper · .dp-shortcut</code>
+        </div>
+      </div>
+
+      <div style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--card-shadow);">
+        <div style="background:var(--usf-green); padding:0.65rem 1rem; display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--usf-gold); font-weight:500;">🏠 Course Home Page</span>
+          <a href="canvas-demo-page.html" target="_blank" style="background:rgba(253,187,48,0.2); border:1px solid rgba(253,187,48,0.4); color:var(--usf-gold); font-size:0.68rem; font-family:'DM Mono',monospace; padding:0.15rem 0.5rem; border-radius:4px; text-decoration:none;">Open →</a>
+        </div>
+        <div style="padding:1rem; background:#FAFAF8; font-size:0.8rem; color:var(--muted); line-height:1.7;">
+          7-week course map · 3 module cards with objectives + activity sequences · Grading table · Quick links<br>
+          <code style="font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--usf-green);">.dp-module-list · .dp-objective · .dp-grading-scheme-table · .dp-link-grid</code>
+        </div>
+      </div>
+
     </div>
   </section>
 
 </main>
 
 <footer>
-  <strong>Symposium on AI in Higher Education</strong> · USF BUAN Hub ·
-  Built with GenAI using the workflow demonstrated in this session ·
-  <a href="https://github.com" style="color:rgba(255,255,255,0.5);">View source on GitHub</a>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:1.25rem;max-width:860px;margin:0 auto;">
+    <div style="background:#fff;border-radius:12px;padding:1rem;border:3px solid #FDBB30;display:inline-flex;flex-direction:column;align-items:center;gap:0.5rem;">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAIcCAIAAAAynOArAAAMi0lEQVR4nO3cQXLkxhVFUVHBbXkZXqWW4YVBE03sAZV2X3/+BM8Zd1ShALBv5OR9PM/zGwAUfv/uCwDgPUQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQERUAMqICQEZUAMiICgCZz+qDPv75j+qjrvP88a+//Tcn96f6nMrJ9ZzYds3bnsXkNZ/Ydn9O3PiublPdQycVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQERUAMqICQEZUAMhk218nqm2ZSdu2gLZtLlW2bW1Vn3Pjs6hs2zSrbLueE5PvoZMKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGRGt79OTG7UTG743LiDNHk92zaybtwZO7HtPldu/NupbNsic1IBICMqAGREBYCMqACQERUAMqICQEZUAMiICgAZUQEgIyoAZEQFgMy67a+3qraJtn3ONts2l7btp924f7Xtd/E1JxUAMqICQEZUAMiICgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyNj+eqHJ/avqu7btX518zuR9PjF5D0/YsvuZnFQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBILNu+8s+z4zqPle7TCcmP8fe1B7bNtZO/OTn7qQCQEZUAMiICgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKAJnR7a8bN3xuNLlb5XN8zv/btuvx/9jXnFQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBIPPxPM93XwN/eesu04kb95Sq337ixvszafJZ8DUnFQAyogJARlQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIXLn9VW1kbfuuSrUTVe2MbXsW27bR3noPt/1dVG58f6rvOuGkAkBGVADIiAoAGVEBICMqAGREBYCMqACQERUAMqICQEZUAMiICgCZbPtr2xbQjftXN97Dbdcz6cbf/tYNsW17XCdu/D/qhJMKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGRGt78q2zaXJq/nhI2sX/fWZ7rtWWzbrZr01v8znVQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBIJNtfx192bKtm5+8TfTWfbDJjay3vj837oyduPF53XjNTioAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBkRAWAjKgAkBnd/jqxbXfoxo2sG6/5xI0bWTfuX03atlt143bcNk4qAGREBYCMqACQERUAMqICQEZUAMiICgAZUQEgIyoAZEQFgIyoAJDJtr8mN4Vu3JKqvmvbfZ78XZP3Z9tzn7TtmVa2Xc+Jbe/zCScVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQERUAMqICQEZUAMhk219HX7ZsU2jbrs62LbIT2+7zW9+NyuR23Iltfzs3vj/b3lUnFQAyogJARlQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIXLn9te27TmzbXJq0bb9o27PYdn9O3HgPT7z1d01yUgEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBkRAWAzLrtrxM3bnZt23fatsN2wnP/9e86Ub0bk59zwv359e864aQCQEZUAMiICgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKAJnP6oO27dhs28Opvqv6XZXJ69m2uTRp8ndt2626cfOtsu3/1RNOKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQyba/TmzbsXnrd1Vu/O3btshO3LiRtW0b7cS257XtuypOKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQ+Xie57uv4d9M7oNN7hdtu54TNz6Lbfd5228/ceP1bNu/2vZ3MclJBYCMqACQERUAMqICQEZUAMiICgAZUQEgIyoAZEQFgIyoAJARFQAyo9tfb90mmjS5gzS5X/STN7JObNuJ2va3s+3vonLj35eTCgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBkPr/7Av4X1Y7NjVtSN+4XnZh8FtV9nty/2rbvNGny72LS5Ls6yUkFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKj21/btra27Wi99Xoq27atbtzRutG2575te/DE5Hc5qQCQERUAMqICQEZUAMiICgAZUQEgIyoAZEQFgIyoAJARFQAyogJAZnT7a9uW1Ikb93kmt5JOPuetm2aT97n6rm3vxokb/9+YfF4nJp+7kwoAGVEBICMqAGREBYCMqACQERUAMqICQEZUAMiICgAZUQEgIyoAZD6e5/nua/ivbdtcOjG583Ni22bXjdtWJ258Vye99bdPvmMnbH8BcCVRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGSy7a9tm0uT7Fa9z+Tu2Ym3vmMnbrzmE299pk4qAGREBYCMqACQERUAMqICQEZUAMiICgAZUQEgIyoAZEQFgIyoAJD5/O4L+E+TeziT3rrzM3k9k3tc2+7hjSaf17bvuvEdq67HSQWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQERUAMqPbX5MbR5O7Oie2bRNt+67Ktud+4sZrvtHkrte2jb5JTioAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBkRAWAjKgAkPl4nmfuywb3cLZt+GzbPZvcBzuxbSvpxk2zGzff3vr+/GROKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQWbf9VXnrzs+2jaNtG1CVbff5xFv/vm7c8dt2f05U1+ykAkBGVADIiAoAGVEBICMqAGREBYCMqACQERUAMqICQEZUAMiICgCZz+qDJvdwqq2byc2c6v7cuE207Zq3vT8nqndj0rZnuu3+VKq/r4qTCgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBksu2vbbtMlcndqm1bSZVtz/TEtj2lG+/hNpP7eyfeulfmpAJARlQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAmY/neZoPunD/6sTk5tK2nZ9tW2Rv3WGrvPWa3+qt76GTCgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBksu0vvvbWTapqu2lyQ4yvbXsPt71jJyavedv9cVIBICMqAGREBYCMqACQERUAMqICQEZUAMiICgAZUQEgIyoAZEQFgMxn9UE/eXPpZDNncsNn2z7Y5Hed2HY9Jya34yrVNb/1b+fGXa8TTioAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBkRAWAjKgAkMm2v068dXNpUrUXtO133bhxtO2ab9wHOzF5PTf+H7Xtmp1UAMiICgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAzuv11ws7P127cmzoxuWlW/fbJHa1tz+vEtvu8bdPsxLZduBNOKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQWbf99VY3bi5NXvO275rc9Trx1k2zE9s2uybvT/XcJ3cOnVQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAGVEBIGP7a4i9oBnVfa6exbbnXpn8XTe+h5XJHb/qu5xUAMiICgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASCzbvvrJ+/8nLjx/kzuDlW2bYidmLyHk7/rxLbr2fYsJq/HSQWAjKgAkBEVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQERUAMqPbX9v2eX6yyb2gbbteJybvT/Vd23bGtm1STT6v6lnc+LfjpAJARlQAyIgKABlRASAjKgBkRAWAjKgAkBEVADKiAkBGVADIiAoAmY/neb77GgB4CScVADKiAkBGVADIiAoAGVEBICMqAGREBYCMqACQERUAMqICQEZUAMiICgAZUQEgIyoAZEQFgIyoAJARFQAyogJARlQAyIgKABlRASAjKgBkRAWAzJ/Mb8IMBD1uGQAAAABJRU5ErkJggg==" alt="QR code for workshop site" width="160" height="160" style="display:block;border-radius:4px;">
+      <span style="font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:#00543C;font-family:monospace;font-weight:700;">Scan to Access Workshop Materials</span>
+    </div>
+    <div>
+      <strong>Symposium on AI in Higher Education</strong><br>
+      <a href="https://ericlacy.github.io/ai-canvas-dev-workshop/" style="color:rgba(255,255,255,0.55);font-size:0.78rem;">ericlacy.github.io/ai-canvas-dev-workshop</a><br>
+      <span style="font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:0.25rem;display:block;">Built with GenAI using the workflow demonstrated in this session</span>
+    </div>
+  </div>
 </footer>
 
 <script>
+// ── SCROLL LOCK ──────────────────────────────────────────
+// ── SCROLL LOCK ──
+document.body.classList.add('scroll-locked');
+
+function unlockScroll() {
+  document.body.classList.remove('scroll-locked');
+  const cue = document.getElementById('scroll-cue');
+  if (cue) { cue.style.opacity = '0'; cue.style.pointerEvents = 'none'; }
+}
+
+window.addEventListener('wheel',     unlockScroll, { once: true, passive: true });
+window.addEventListener('touchmove', unlockScroll, { once: true, passive: true });
+window.addEventListener('keydown', function(e) {
+  if (['ArrowDown','PageDown',' '].includes(e.key)) unlockScroll();
+}, { once: true });
+
 function copyPrompt(btn, id) {
   const el = document.getElementById(id);
   // Get text without HTML tags
