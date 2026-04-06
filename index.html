@@ -822,21 +822,31 @@
         <span>00 — Course Welcome Page Builder</span>
         <button class="copy-btn" onclick="copyPrompt(this, 'pwelcome')">Copy</button>
       </div>
-      <div class="prompt-body" id="pwelcome">You are an instructional designer for <span class="placeholder">BUS 3410: Data Storytelling for Business</span>, a <span class="placeholder">7-week accelerated undergraduate course delivered online</span>.
+      <div class="prompt-body" id="pwelcome">You are an instructional designer for <span class="placeholder">BUS 3410: Data Storytelling for Business</span>, a <span class="placeholder">7-week accelerated undergraduate course delivered online / asynchronously</span>.
 
-This is the first page students see. It must orient, reassure, and activate — not lecture.
+Instructor: <span class="placeholder">Eric Lacy, Term Professor, School of Management — Business Analytics &amp; Information Systems</span>
+
+Course description: <span class="placeholder">Students learn to transform raw data into compelling business arguments — from selecting the right chart to building an executive presentation. The course uses a progressive three-module arc. Each module produces a professional deliverable.</span>
 
 Generate a complete Canvas Welcome page including:
-- A 2-sentence welcome statement that conveys the value of the course, not just its title
-- A "How This Course Works" section: 3-module arc (See It · Say It · Show It), module unlock sequence
-- A weekly time commitment breakdown (reading, lectures, projects — estimate hours each)
-- A "What You Will Need" section listing required tools: <span class="placeholder">[Tableau Public, course dataset library, Zoom/Canvas Studio]</span>
-- A Week 1 checklist (5 items: syllabus, welcome video, intro discussion, style guide download, Module 1 open)
-- An instructor card: name, title, contact method, appointment link placeholder
-- A CTA button: "Go to Course Home →"
 
-Tone: <span class="placeholder">direct and encouraging</span>. This is not a syllabus. Write like a person, not a policy document.
-Format for Canvas RCE. Do not use bullet points for the welcome statement.</div>
+1. A 2-sentence welcome statement that conveys the professional value of the course — not a restatement of the title
+2. A "How This Course Works" section:
+   - Module arc with weeks: See It (Weeks 1–2) · Say It (Weeks 3–5) · Show It (Weeks 6–7)
+   - Modules unlock sequentially — Module 1 must be complete before Module 2 opens
+3. Weekly time commitment estimate: reading (~90 min), lectures (~22–30 min), projects (~3 hrs), total ~5–6 hrs/week
+4. Required tools: <span class="placeholder">Tableau Public (free campus license), Course Dataset Library, Zoom / Canvas Studio</span>
+5. Week 1 checklist (5 items in this order):
+   - Read the Course Syllabus
+   - Watch the Welcome Video (8 min)
+   - Post in the Week 1 Introduction Discussion
+   - Download the Data Visualization Style Guide
+   - Open Module 1
+6. Instructor card: name, title, department, contact method, appointment booking link placeholder
+7. A CTA button: "Go to Course Home →"
+
+Tone: <span class="placeholder">direct and encouraging</span>. Write like a person, not a policy document. This is not a syllabus.
+Format for Canvas RCE. Do not use bullet points for the welcome statement or the instructor card.</div>
     </div>
 
     <!-- Prompt: Course Design Doc -->
@@ -903,17 +913,30 @@ Format as a structured planning document, not a syllabus. Use clear headings. Th
       <div class="prompt-body" id="p4">You are an instructional designer for <span class="placeholder">BUS 3410: Data Storytelling for Business</span>, a <span class="placeholder">7-week accelerated undergraduate course delivered online</span>.
 
 Module 1 covers Weeks 1–2. Title: "See It: Foundations of Data Visualization."
+CLO alignment: CLO 1 (Select) · CLO 4 (Evaluate)
 
-Students struggle with selecting the right chart for their data and often default to bar charts for everything.
+Student challenge: <span class="placeholder">Students default to bar charts for everything and cannot explain why. They lack a vocabulary for matching data type to visual form.</span>
+
+Module objectives (use exactly these, in this order):
+1. Classify data types and select appropriate chart families
+2. Apply Gestalt principles to evaluate visual clarity
+3. Critique a published visualization using a structured rubric
+
+Weekly activity sequence (use these exactly, with estimated times):
+- Week 1: Read Chart Chooser Framework (Ch. 1–2) — est. 90 min
+- Week 1: Complete ungraded Chart Matching Quiz — est. 30 min
+- Week 1: Discussion — Post a data visualization found in the wild; evaluate it using the CLEAR rubric
+- Week 2: Complete Visualization Critique assignment — est. 3 hrs
+
+Summative assessment (use this exact description):
+Visualization Critique (100 pts) — Analyze a real published chart: identify the data type, evaluate design decisions against Gestalt principles, and recommend one specific improvement with rationale.
 
 Generate a complete Canvas module overview page including:
 - A 2-sentence module purpose statement (student-facing, energetic tone)
-- 3 measurable learning objectives using Bloom's action verbs
-- A sequenced activity list:
-    Week 1: Reading + ungraded practice quiz
-    Week 2: Graded assignment (Visualization Critique, 100 pts)
-- Estimated time for each activity
-- One "Pro Tip" callout with a practical insight students can apply immediately
+- The three module objectives listed above
+- The weekly activity sequence with estimated times
+- One "Pro Tip" callout with a practical insight students can apply to Week 1 reading immediately
+- The summative assessment description and point value
 - Due date placeholder: <span class="placeholder">[INSERT WEEK 2 DATE]</span>
 
 Format for Canvas RCE. Use plain language. Tone: direct and encouraging.
@@ -937,18 +960,31 @@ Do not use the phrase "In this module, you will."</div>
       <div class="prompt-body" id="p5">You are an instructional designer for <span class="placeholder">BUS 3410: Data Storytelling for Business</span>, a <span class="placeholder">7-week accelerated undergraduate course delivered online</span>.
 
 Module 2 covers Weeks 3–5. Title: "Say It: Building the Data Narrative."
+CLO alignment: CLO 2 (Construct) · CLO 3 (Design) · CLO 4 (Evaluate)
 
-Students often produce technically accurate visualizations but struggle to connect data findings to a clear recommendation. They treat charts as conclusions rather than evidence.
+Student challenge: <span class="placeholder">Students produce technically accurate visuals but cannot connect findings to a recommendation. They treat charts as conclusions rather than evidence.</span>
+
+Module objectives (use exactly these, in this order):
+1. Apply the SCR framework (Situation–Complication–Resolution) to structure a data story
+2. Tailor data communication for a non-technical executive audience
+3. Construct a storyboard connecting data insights to a business recommendation
+
+Weekly activity sequence (use these exactly, with estimated times):
+- Week 3: Watch SCR Framework Lecture — est. 22 min
+- Week 3: Read Executive Communication in Data Contexts (Ch. 4) — est. 60 min
+- Week 4: Draft Data Story Storyboard — est. 2 hrs
+- Week 4: Peer Review — evaluate two classmate storyboards using the SCR rubric
+- Week 5: Revise and submit Narrative Memo — est. 3 hrs
+
+Summative assessment (use this exact description):
+Narrative Memo (150 pts) — Select a provided business dataset. Apply the SCR framework to build a written data story (600–800 words) that concludes with a specific, defensible recommendation for a named executive audience.
 
 Generate a complete Canvas module overview page including:
 - A 2-sentence module purpose statement (student-facing)
-- 3 measurable learning objectives
-- A sequenced activity list:
-    Week 3: SCR Framework lecture (22 min) + reading
-    Week 4: Storyboard draft + peer review discussion
-    Week 5: Graded assignment (Narrative Memo, 150 pts)
-- Estimated time for each activity
-- One "Watch Out" callout warning students about the most common mistake in this module
+- The three module objectives listed above
+- The weekly activity sequence with estimated times
+- One "Watch Out" callout naming the most common mistake students make in this module
+- The summative assessment description and point value
 - Due date placeholders: <span class="placeholder">[PEER REVIEW DUE DATE]</span> and <span class="placeholder">[MEMO DUE DATE]</span>
 
 Format for Canvas RCE. Tone: direct and professional.</div>
@@ -971,18 +1007,32 @@ Format for Canvas RCE. Tone: direct and professional.</div>
       <div class="prompt-body" id="p6">You are an instructional designer for <span class="placeholder">BUS 3410: Data Storytelling for Business</span>, a <span class="placeholder">7-week accelerated undergraduate course delivered online</span>.
 
 Module 3 covers Weeks 6–7. Title: "Show It: Presenting to Decision Makers."
+CLO alignment: CLO 1 (Select) · CLO 2 (Construct) · CLO 3 (Design) · CLO 4 (Evaluate) · CLO 5 (Present) — all course outcomes
 
-This is the capstone module. Students deliver a 10-minute live data presentation to a simulated executive panel. The most common failure point: students read from their slides instead of speaking to the data.
+Student challenge: <span class="placeholder">Students read from their slides instead of speaking to the data. They prepare content but not delivery.</span>
+
+Module objectives (use exactly these, in this order):
+1. Deliver a 10-minute data presentation using an executive briefing format
+2. Respond to panel questions about data sources, methodology, and recommendations
+3. Reflect on presentation effectiveness using a self-assessment rubric
+
+Weekly activity sequence (use these exactly, with estimated times):
+- Week 6: Record Dry Run Presentation (ungraded) — est. 2 hrs
+- Week 6: Peer Q&A Forum — watch two classmate dry runs and post two questions per video
+- Week 7: Revise presentation based on peer Q&A feedback — est. 1.5 hrs
+- Week 7: Deliver final Executive Presentation (recorded or live panel) — est. 30 min
+- Week 7: Complete Self-Assessment Reflection (500 words) — est. 45 min
+
+Summative assessment (use this exact description):
+Executive Presentation (200 pts) — Deliver a 10-minute data presentation on your Module 2 dataset to a simulated executive panel. Include: opening insight, data story, recommendation, and response to at least two panel questions. Submit recording + self-assessment reflection.
 
 Generate a complete Canvas module overview page including:
-- A 2-sentence module purpose statement that conveys the stakes and the opportunity
-- 3 measurable learning objectives
-- A sequenced activity list:
-    Week 6: Dry run (recorded, ungraded) + Peer Q&A Feedback Forum
-    Week 7: Live Executive Presentation (200 pts)
-- Estimated time for each activity
-- One "What Executives Notice" callout with 3 specific behaviors that distinguish strong presenters
-- Self-assessment checklist (5 items) students complete before submitting their final recording
+- A 2-sentence module purpose statement that conveys the stakes and the opportunity — this is the capstone
+- The three module objectives listed above
+- The full weekly activity sequence with estimated times
+- One "What Executives Notice" callout with 3 specific, observable behaviors that distinguish strong presenters from weak ones
+- A self-assessment checklist (5 items) students complete before submitting their final recording
+- The summative assessment description and point value
 - Due date placeholders: <span class="placeholder">[DRY RUN DATE]</span> and <span class="placeholder">[FINAL PRESENTATION DATE]</span>
 
 Format for Canvas RCE. Tone: confident and motivating. This is the finish line.</div>
@@ -997,70 +1047,131 @@ Format for Canvas RCE. Tone: confident and motivating. This is the finish line.<
     <p>General-purpose templates built on the CRISP framework. Replace every highlighted field with your own course details. These work for any course, any level, any modality.</p>
 
     <!-- Prompt 1 -->
+    <div style="margin:1.5rem 0 0.5rem;">
+      <p style="font-size:0.88rem;color:var(--muted);line-height:1.75;margin:0 0 0.6rem;">
+        This prompt builds a <strong style="color:var(--ink);">Canvas module overview page for any course.</strong> It mirrors the structure of the demo module prompts — same sections, same logic — with every course-specific detail replaced by a token you fill in. Supply your module title, student challenge, exact objectives from your Course Design Document, weekly activity sequence with time estimates, and summative assessment description. The output is a complete, student-facing Canvas page ready to paste into the RCE.
+      </p>
+      <p style="font-size:0.82rem;color:var(--usf-green);font-family:'DM Mono',monospace;margin:0 0 0.75rem;">
+        Output: Module purpose · Learning objectives · Activity sequence with time estimates · Callout · Assessment description · Due date
+      </p>
+    </div>
     <div class="prompt-card">
       <div class="prompt-header">
-        <span>04 — Module Structure Builder</span>
+        <span>04 — Module Page Builder</span>
         <button class="copy-btn" onclick="copyPrompt(this, 'p1')">Copy</button>
       </div>
       <div class="prompt-body" id="p1">You are an instructional designer for <span class="placeholder">[COURSE NAME]</span>, a <span class="placeholder">[undergraduate / graduate]</span> course delivered <span class="placeholder">[online / hybrid / in-person]</span>.
 
-Students struggle with <span class="placeholder">[known pain point, e.g., "connecting theory to practice"]</span>.
+Module <span class="placeholder">[#]</span> covers <span class="placeholder">[WEEK RANGE, e.g., Weeks 1–2]</span>. Title: "<span class="placeholder">[MODULE TITLE]</span>."
+CLO alignment: <span class="placeholder">[CLO # (Action Verb)] · [CLO # (Action Verb)]</span>
 
-Generate a module overview for Week <span class="placeholder">[#]</span>: <span class="placeholder">[TOPIC]</span>.
+Student challenge: <span class="placeholder">[Describe the specific thing students struggle with in this module — be concrete, not generic]</span>
 
-Include:
-- 3 learning objectives (action-verb + measurable outcome)
-- A numbered sequence of activities (readings → practice → assessment)
-- An "estimated time" for each activity
-- One optional enrichment resource
+Module objectives (use exactly these, in this order):
+1. <span class="placeholder">[Action verb + measurable outcome — maps to CLO #]</span>
+2. <span class="placeholder">[Action verb + measurable outcome — maps to CLO #]</span>
+3. <span class="placeholder">[Action verb + measurable outcome — maps to CLO #]</span>
 
-Format for Canvas LMS. Use plain language. Tone: <span class="placeholder">[professional / conversational / encouraging]</span>.</div>
+Weekly activity sequence (use these exactly, with estimated times):
+- <span class="placeholder">[Week #]</span>: <span class="placeholder">[Activity — reading, lecture, or practice]</span> — est. <span class="placeholder">[time]</span>
+- <span class="placeholder">[Week #]</span>: <span class="placeholder">[Activity — reading, lecture, or practice]</span> — est. <span class="placeholder">[time]</span>
+- <span class="placeholder">[Week #]</span>: <span class="placeholder">[Graded assignment name]</span> — est. <span class="placeholder">[time]</span>
+
+Summative assessment (use this exact description):
+<span class="placeholder">[Assignment title]</span> (<span class="placeholder">[point value]</span>) — <span class="placeholder">[2-sentence description: what students do, what they submit]</span>
+
+Generate a complete Canvas module overview page including:
+- A 2-sentence module purpose statement (student-facing, <span class="placeholder">[energetic / direct / motivating]</span> tone)
+- The three module objectives listed above
+- The weekly activity sequence with estimated times
+- One "<span class="placeholder">[Pro Tip / Watch Out / Key Concept]</span>" callout with <span class="placeholder">[specific insight or warning for this module]</span>
+- The summative assessment description and point value
+- Due date placeholder: <span class="placeholder">[INSERT DUE DATE]</span>
+
+Format for Canvas RCE. Use plain language. Tone: <span class="placeholder">[direct and encouraging / professional / conversational]</span>.
+Do not use the phrase "In this module, you will."</div>
     </div>
 
     <!-- Prompt 2 -->
+    <div style="margin:1.5rem 0 0.5rem;">
+      <p style="font-size:0.88rem;color:var(--muted);line-height:1.75;margin:0 0 0.6rem;">
+        This prompt generates a <strong style="color:var(--ink);">complete Canvas assignment page and 4-point analytic rubric</strong> from your Course Design Document. Supply the assignment title, module context, CLO alignment, student challenge, exact learning objectives, and the assessment description from your CDD. The output includes a student-facing purpose statement, numbered task instructions, deliverable specifications, and a fully populated rubric table — all formatted for Canvas RCE.
+      </p>
+      <p style="font-size:0.82rem;color:var(--usf-green);font-family:'DM Mono',monospace;margin:0 0 0.75rem;">
+        Output: Purpose statement · Task instructions · Deliverable specs · 4-point analytic rubric (3 criteria)
+      </p>
+    </div>
     <div class="prompt-card">
       <div class="prompt-header">
         <span>05 — Assignment + Rubric Generator</span>
         <button class="copy-btn" onclick="copyPrompt(this, 'p2')">Copy</button>
       </div>
-      <div class="prompt-body" id="p2">You are an instructional designer for <span class="placeholder">[COURSE NAME]</span>.
+      <div class="prompt-body" id="p2">You are an instructional designer for <span class="placeholder">[COURSE NAME]</span>, a <span class="placeholder">[undergraduate / graduate]</span> course delivered <span class="placeholder">[online / hybrid / in-person]</span>.
 
-Write a complete assignment description for: <span class="placeholder">[ASSIGNMENT TITLE]</span>
+Assignment: <span class="placeholder">[ASSIGNMENT TITLE]</span>
+Module: <span class="placeholder">[MODULE #]</span> · <span class="placeholder">[WEEK RANGE]</span>
+Point value: <span class="placeholder">[POINTS]</span>
+CLO alignment: <span class="placeholder">[CLO # (Action Verb)] · [CLO # (Action Verb)]</span>
 
-Learning objectives this assignment addresses:
-- <span class="placeholder">[Objective 1]</span>
-- <span class="placeholder">[Objective 2]</span>
+Student challenge: <span class="placeholder">[What makes this assignment cognitively difficult — what do students typically get wrong or struggle to demonstrate?]</span>
 
-Include:
-- Purpose statement (2 sentences, student-facing)
+Learning objectives this assignment addresses (from your Course Design Document):
+1. <span class="placeholder">[Objective — exact wording from CDD]</span>
+2. <span class="placeholder">[Objective — exact wording from CDD]</span>
+3. <span class="placeholder">[Objective — exact wording from CDD]</span>
+
+Assignment description (use this exact framing):
+<span class="placeholder">[Assignment title]</span> — <span class="placeholder">[2 sentences: what students do, what source material they use (dataset, text, case), what they submit, and any key constraints such as word count or format]</span>
+
+Rubric criteria (name the skill being evaluated, not the task):
+1. <span class="placeholder">[Criterion 1 — e.g., "Data Selection and Chart Appropriateness"]</span>
+2. <span class="placeholder">[Criterion 2 — e.g., "Application of Design Principles"]</span>
+3. <span class="placeholder">[Criterion 3 — e.g., "Quality of Recommendation and Rationale"]</span>
+
+Generate a complete Canvas assignment page including:
+- Purpose statement (2 sentences, student-facing — why this work matters professionally)
 - Task instructions (numbered steps)
-- Deliverable specifications (format, length, submission type)
-- A 4-point analytic rubric with 3 criteria
+- Deliverable specifications: format <span class="placeholder">[written / recorded / visual]</span>, length <span class="placeholder">[word count or time]</span>, submission type <span class="placeholder">[Canvas upload / link / recording]</span>
+- A 4-point analytic rubric using the three criteria above: Excellent (4) | Proficient (3) | Developing (2) | Incomplete (1)
 
-Rubric format: criteria | Excellent (4) | Proficient (3) | Developing (2) | Incomplete (1)
-
-Output in plain text formatted for Canvas RCE paste.</div>
+Format for Canvas RCE. Tone: <span class="placeholder">[direct and professional / encouraging / formal]</span>.</div>
     </div>
 
     <!-- Prompt 3 -->
+    <div style="margin:1.5rem 0 0.5rem;">
+      <p style="font-size:0.88rem;color:var(--muted);line-height:1.75;margin:0 0 0.6rem;">
+        This prompt drafts a <strong style="color:var(--ink);">targeted Canvas Announcement, email, or module feedback message</strong> from a real classroom situation. Supplying specific context — which week, what students did or didn't do, what the concern or opportunity is — produces a draft that sounds like you, not a form letter. The module context field connects the message to the course arc so students understand why you're reaching out and exactly what to do next.
+      </p>
+      <p style="font-size:0.82rem;color:var(--usf-green);font-family:'DM Mono',monospace;margin:0 0 0.75rem;">
+        Output: Announcement / email under 150 words · Empathetic opening · Single clear action · Contact info · Encouraging close
+      </p>
+    </div>
     <div class="prompt-card">
       <div class="prompt-header">
         <span>06 — Student Communication</span>
         <button class="copy-btn" onclick="copyPrompt(this, 'p3')">Copy</button>
       </div>
       <div class="prompt-body" id="p3">You are a faculty member teaching <span class="placeholder">[COURSE NAME]</span>.
+Instructor: <span class="placeholder">[YOUR NAME]</span>, <span class="placeholder">[TITLE]</span>, <span class="placeholder">[DEPARTMENT]</span>
+Contact: <span class="placeholder">[email / office hours link / appointment URL]</span>
 
-Situation: <span class="placeholder">[describe the scenario, e.g., "Several students missed the first quiz and haven't reached out. It's Week 3."]</span>
+Communication type: <span class="placeholder">[Canvas Announcement / Email / Module Feedback]</span>
 
-Write a Canvas Announcement that:
-- Opens with empathy, not a lecture
+Situation: <span class="placeholder">[Describe what is happening — be specific: which week, what students have done or not done, what the concern or opportunity is. E.g., "Several students missed the Week 3 quiz and haven't reached out. It's now Week 4 and Module 2 opens Monday."]</span>
+
+Module context: <span class="placeholder">[Which module students are in or transitioning to, and what they are about to face]</span>
+
+Write a <span class="placeholder">[Canvas Announcement / email]</span> that:
+- Opens with <span class="placeholder">[empathy / a direct observation / a positive acknowledgment]</span> — not a lecture
 - States one clear action the student should take
-- Includes your contact method and availability
-- Closes with encouragement
+- Explains why in one sentence
+- Includes contact method: <span class="placeholder">[email / appointment link]</span>
+- Closes with <span class="placeholder">[encouragement / urgency / next steps]</span>
 - Tone: <span class="placeholder">[warm / direct / formal]</span>
-- Length: under 150 words
+- Length: under <span class="placeholder">[150 / 200]</span> words
 
-Do not use the phrase "I hope this email finds you well."</div>
+Do not use the phrase "I hope this email finds you well."
+Do not use passive voice.</div>
     </div>
 
   </section>
