@@ -623,7 +623,7 @@
     <a href="#agenda">Agenda</a>
     <a href="#workflow">Workflow</a>
     <a href="#crisp">CRISP Framework</a>
-    <a href="#prompts">Prompt Library</a>
+    <a href="#prompts">Demo Prompts &amp; Library</a>
     <a href="#artifacts">Quick-Start Kit</a>
   </div>
 </nav>
@@ -799,17 +799,129 @@
     </div>
   </section>
 
-  <!-- ── SECTION 5: PROMPT LIBRARY ── -->
+  <!-- ── SECTION 5: PROMPTS ── -->
   <section id="prompts">
-    <div class="section-label">Ready-to-Use Prompts</div>
+
+    <!-- ── DEMO PROMPTS ── -->
+    <div class="section-label">BUS 3410 Demo — Live Session Prompts</div>
     <div class="gold-line"></div>
-    <h2>Prompt Library</h2>
-    <p>Copy, fill in the highlighted fields, paste into Claude or ChatGPT. These follow the CRISP framework.</p>
+    <h2>Demo Prompts</h2>
+    <p>These are the prompts run live during the session. Highlighted fields show what to swap for your own course. Copy and run as-is to reproduce the BUS 3410 demo, or replace the highlighted content with your own course details.</p>
+
+    <!-- Prompt 4 -->
+    <div style="margin:1.5rem 0 0.5rem;">
+      <p style="font-size:0.88rem;color:var(--muted);line-height:1.75;margin:0 0 0.6rem;">
+        This prompt builds the <strong style="color:var(--ink);">Module 1 Canvas overview page</strong> for a course that has already been designed. It feeds the module title, student pain point, and weekly activity sequence into a single request — and returns a complete, student-facing page with a purpose statement, three Bloom's-aligned objectives, a time-stamped activity sequence, and a "Pro Tip" callout. The output is formatted for Canvas RCE and ready to paste without rewriting.
+      </p>
+      <p style="font-size:0.82rem;color:var(--usf-green);font-family:'DM Mono',monospace;margin:0 0 0.75rem;">
+        Output: Module purpose · Learning objectives · Activity sequence with time estimates · Pro Tip callout · Due date
+      </p>
+    </div>
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span>01 — Module 1 Page Builder (See It)</span>
+        <button class="copy-btn" onclick="copyPrompt(this, 'p4')">Copy</button>
+      </div>
+      <div class="prompt-body" id="p4">You are an instructional designer for <span class="placeholder">BUS 3410: Data Storytelling for Business</span>, a <span class="placeholder">7-week accelerated undergraduate course delivered online</span>.
+
+Module 1 covers Weeks 1–2. Title: "See It: Foundations of Data Visualization."
+
+Students struggle with selecting the right chart for their data and often default to bar charts for everything.
+
+Generate a complete Canvas module overview page including:
+- A 2-sentence module purpose statement (student-facing, energetic tone)
+- 3 measurable learning objectives using Bloom's action verbs
+- A sequenced activity list:
+    Week 1: Reading + ungraded practice quiz
+    Week 2: Graded assignment (Visualization Critique, 100 pts)
+- Estimated time for each activity
+- One "Pro Tip" callout with a practical insight students can apply immediately
+- Due date placeholder: <span class="placeholder">[INSERT WEEK 2 DATE]</span>
+
+Format for Canvas RCE. Use plain language. Tone: direct and encouraging.
+Do not use the phrase "In this module, you will."</div>
+    </div>
+
+    <!-- Prompt 5 -->
+    <div style="margin:1.5rem 0 0.5rem;">
+      <p style="font-size:0.88rem;color:var(--muted);line-height:1.75;margin:0 0 0.6rem;">
+        This prompt builds the <strong style="color:var(--ink);">Module 2 Canvas overview page</strong> — the narrative module where students shift from producing visuals to building arguments. It supplies the specific student misconception (treating charts as conclusions rather than evidence) as part of the CRISP context, which directs AI to address that gap in the output. The result includes a module purpose statement, objectives, a three-week activity arc with peer review, a "Watch Out" callout targeting the most common mistake, and two due date slots ready to fill.
+      </p>
+      <p style="font-size:0.82rem;color:var(--usf-green);font-family:'DM Mono',monospace;margin:0 0 0.75rem;">
+        Output: Module purpose · Learning objectives · 3-week activity arc · Watch Out callout · Peer review + memo due dates
+      </p>
+    </div>
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span>02 — Module 2 Page Builder (Say It)</span>
+        <button class="copy-btn" onclick="copyPrompt(this, 'p5')">Copy</button>
+      </div>
+      <div class="prompt-body" id="p5">You are an instructional designer for <span class="placeholder">BUS 3410: Data Storytelling for Business</span>, a <span class="placeholder">7-week accelerated undergraduate course delivered online</span>.
+
+Module 2 covers Weeks 3–5. Title: "Say It: Building the Data Narrative."
+
+Students often produce technically accurate visualizations but struggle to connect data findings to a clear recommendation. They treat charts as conclusions rather than evidence.
+
+Generate a complete Canvas module overview page including:
+- A 2-sentence module purpose statement (student-facing)
+- 3 measurable learning objectives
+- A sequenced activity list:
+    Week 3: SCR Framework lecture (22 min) + reading
+    Week 4: Storyboard draft + peer review discussion
+    Week 5: Graded assignment (Narrative Memo, 150 pts)
+- Estimated time for each activity
+- One "Watch Out" callout warning students about the most common mistake in this module
+- Due date placeholders: <span class="placeholder">[PEER REVIEW DUE DATE]</span> and <span class="placeholder">[MEMO DUE DATE]</span>
+
+Format for Canvas RCE. Tone: direct and professional.</div>
+    </div>
+
+    <!-- Prompt 6 -->
+    <div style="margin:1.5rem 0 0.5rem;">
+      <p style="font-size:0.88rem;color:var(--muted);line-height:1.75;margin:0 0 0.6rem;">
+        This prompt builds the <strong style="color:var(--ink);">Module 3 capstone overview page</strong> — the highest-stakes page in the course. It names the failure point explicitly (students reading from slides instead of speaking to the data), which focuses the AI output on preparation and performance behaviors rather than just logistics. The result includes a purpose statement that conveys stakes, a two-week activity arc, a "What Executives Notice" callout with three observable behaviors, a five-item self-assessment checklist students complete before submitting, and two due date placeholders for the dry run and final presentation.
+      </p>
+      <p style="font-size:0.82rem;color:var(--usf-green);font-family:'DM Mono',monospace;margin:0 0 0.75rem;">
+        Output: Capstone purpose · Learning objectives · 2-week arc with dry run · Executive behavior callout · Self-assessment checklist · Dry run + presentation due dates
+      </p>
+    </div>
+    <div class="prompt-card">
+      <div class="prompt-header">
+        <span>03 — Module 3 Page Builder (Show It)</span>
+        <button class="copy-btn" onclick="copyPrompt(this, 'p6')">Copy</button>
+      </div>
+      <div class="prompt-body" id="p6">You are an instructional designer for <span class="placeholder">BUS 3410: Data Storytelling for Business</span>, a <span class="placeholder">7-week accelerated undergraduate course delivered online</span>.
+
+Module 3 covers Weeks 6–7. Title: "Show It: Presenting to Decision Makers."
+
+This is the capstone module. Students deliver a 10-minute live data presentation to a simulated executive panel. The most common failure point: students read from their slides instead of speaking to the data.
+
+Generate a complete Canvas module overview page including:
+- A 2-sentence module purpose statement that conveys the stakes and the opportunity
+- 3 measurable learning objectives
+- A sequenced activity list:
+    Week 6: Dry run (recorded, ungraded) + Peer Q&A Feedback Forum
+    Week 7: Live Executive Presentation (200 pts)
+- Estimated time for each activity
+- One "What Executives Notice" callout with 3 specific behaviors that distinguish strong presenters
+- Self-assessment checklist (5 items) students complete before submitting their final recording
+- Due date placeholders: <span class="placeholder">[DRY RUN DATE]</span> and <span class="placeholder">[FINAL PRESENTATION DATE]</span>
+
+Format for Canvas RCE. Tone: confident and motivating. This is the finish line.</div>
+    </div>
+
+    <!-- ── DIVIDER ── -->
+    <div style="border-top:2px solid var(--border); margin:2.5rem 0 2rem;"></div>
+
+    <!-- ── PROMPT LIBRARY ── -->
+    <div class="section-label">Prompt Library — Adapt for Any Course</div>
+    <h2 style="margin-bottom:0.5rem;">Prompt Library</h2>
+    <p>General-purpose templates built on the CRISP framework. Replace every highlighted field with your own course details. These work for any course, any level, any modality.</p>
 
     <!-- Prompt 1 -->
     <div class="prompt-card">
       <div class="prompt-header">
-        <span>01 — Module Structure Builder</span>
+        <span>04 — Module Structure Builder</span>
         <button class="copy-btn" onclick="copyPrompt(this, 'p1')">Copy</button>
       </div>
       <div class="prompt-body" id="p1">You are an instructional designer for <span class="placeholder">[COURSE NAME]</span>, a <span class="placeholder">[undergraduate / graduate]</span> course delivered <span class="placeholder">[online / hybrid / in-person]</span>.
@@ -830,7 +942,7 @@ Format for Canvas LMS. Use plain language. Tone: <span class="placeholder">[prof
     <!-- Prompt 2 -->
     <div class="prompt-card">
       <div class="prompt-header">
-        <span>02 — Assignment + Rubric Generator</span>
+        <span>05 — Assignment + Rubric Generator</span>
         <button class="copy-btn" onclick="copyPrompt(this, 'p2')">Copy</button>
       </div>
       <div class="prompt-body" id="p2">You are an instructional designer for <span class="placeholder">[COURSE NAME]</span>.
@@ -855,7 +967,7 @@ Output in plain text formatted for Canvas RCE paste.</div>
     <!-- Prompt 3 -->
     <div class="prompt-card">
       <div class="prompt-header">
-        <span>03 — Student Communication</span>
+        <span>06 — Student Communication</span>
         <button class="copy-btn" onclick="copyPrompt(this, 'p3')">Copy</button>
       </div>
       <div class="prompt-body" id="p3">You are a faculty member teaching <span class="placeholder">[COURSE NAME]</span>.
@@ -871,84 +983,6 @@ Write a Canvas Announcement that:
 - Length: under 150 words
 
 Do not use the phrase "I hope this email finds you well."</div>
-    </div>
-
-    <!-- Prompt 4 -->
-    <div class="prompt-card">
-      <div class="prompt-header">
-        <span>04 — Module 1 Page Builder (See It)</span>
-        <button class="copy-btn" onclick="copyPrompt(this, 'p4')">Copy</button>
-      </div>
-      <div class="prompt-body" id="p4">You are an instructional designer for <span class="placeholder">BUS 3410: Data Storytelling for Business</span>, a <span class="placeholder">7-week accelerated undergraduate course delivered online</span>.
-
-Module 1 covers Weeks 1–2. Title: "See It: Foundations of Data Visualization."
-
-Students struggle with selecting the right chart for their data and often default to bar charts for everything.
-
-Generate a complete Canvas module overview page including:
-- A 2-sentence module purpose statement (student-facing, energetic tone)
-- 3 measurable learning objectives using Bloom's action verbs
-- A sequenced activity list:
-    Week 1: Reading + ungraded practice quiz
-    Week 2: Graded assignment (Visualization Critique, 100 pts)
-- Estimated time for each activity
-- One "Pro Tip" callout with a practical insight students can apply immediately
-- Due date placeholder: <span class="placeholder">[INSERT WEEK 2 DATE]</span>
-
-Format for Canvas RCE. Use plain language. Tone: direct and encouraging.
-Do not use the phrase "In this module, you will."</div>
-    </div>
-
-    <!-- Prompt 5 -->
-    <div class="prompt-card">
-      <div class="prompt-header">
-        <span>05 — Module 2 Page Builder (Say It)</span>
-        <button class="copy-btn" onclick="copyPrompt(this, 'p5')">Copy</button>
-      </div>
-      <div class="prompt-body" id="p5">You are an instructional designer for <span class="placeholder">BUS 3410: Data Storytelling for Business</span>, a <span class="placeholder">7-week accelerated undergraduate course delivered online</span>.
-
-Module 2 covers Weeks 3–5. Title: "Say It: Building the Data Narrative."
-
-Students often produce technically accurate visualizations but struggle to connect data findings to a clear recommendation. They treat charts as conclusions rather than evidence.
-
-Generate a complete Canvas module overview page including:
-- A 2-sentence module purpose statement (student-facing)
-- 3 measurable learning objectives
-- A sequenced activity list:
-    Week 3: SCR Framework lecture (22 min) + reading
-    Week 4: Storyboard draft + peer review discussion
-    Week 5: Graded assignment (Narrative Memo, 150 pts)
-- Estimated time for each activity
-- One "Watch Out" callout warning students about the most common mistake in this module
-- Due date placeholders: <span class="placeholder">[PEER REVIEW DUE DATE]</span> and <span class="placeholder">[MEMO DUE DATE]</span>
-
-Format for Canvas RCE. Tone: direct and professional.</div>
-    </div>
-
-    <!-- Prompt 6 -->
-    <div class="prompt-card">
-      <div class="prompt-header">
-        <span>06 — Module 3 Page Builder (Show It)</span>
-        <button class="copy-btn" onclick="copyPrompt(this, 'p6')">Copy</button>
-      </div>
-      <div class="prompt-body" id="p6">You are an instructional designer for <span class="placeholder">BUS 3410: Data Storytelling for Business</span>, a <span class="placeholder">7-week accelerated undergraduate course delivered online</span>.
-
-Module 3 covers Weeks 6–7. Title: "Show It: Presenting to Decision Makers."
-
-This is the capstone module. Students deliver a 10-minute live data presentation to a simulated executive panel. The most common failure point: students read from their slides instead of speaking to the data.
-
-Generate a complete Canvas module overview page including:
-- A 2-sentence module purpose statement that conveys the stakes and the opportunity
-- 3 measurable learning objectives
-- A sequenced activity list:
-    Week 6: Dry run (recorded, ungraded) + Peer Q&A Feedback Forum
-    Week 7: Live Executive Presentation (200 pts)
-- Estimated time for each activity
-- One "What Executives Notice" callout with 3 specific behaviors that distinguish strong presenters
-- Self-assessment checklist (5 items) students complete before submitting their final recording
-- Due date placeholders: <span class="placeholder">[DRY RUN DATE]</span> and <span class="placeholder">[FINAL PRESENTATION DATE]</span>
-
-Format for Canvas RCE. Tone: confident and motivating. This is the finish line.</div>
     </div>
 
   </section>
