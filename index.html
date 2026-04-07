@@ -493,45 +493,6 @@
   .step-body strong { display: block; font-size: 0.95rem; margin-bottom: 0.2rem; color: var(--ink); }
   .step-body p { font-size: 0.85rem; margin: 0; }
 
-  /* ─── CRISP FRAMEWORK ────────────────────────────────── */
-  .crisp-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 0.5rem;
-    margin-top: 1.25rem;
-  }
-
-  .crisp-table td { padding: 0.75rem 1rem; }
-
-  .crisp-letter {
-    background: var(--usf-green);
-    color: var(--usf-gold);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.8rem;
-    width: 56px;
-    text-align: center;
-    border-radius: 8px 0 0 8px;
-  }
-
-  .crisp-word {
-    background: var(--usf-green-dark);
-    color: var(--white);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    width: 100px;
-  }
-
-  .crisp-desc {
-    background: var(--white);
-    color: var(--muted);
-    font-size: 0.85rem;
-    border-radius: 0 8px 8px 0;
-    border: 1px solid var(--border);
-    border-left: none;
-  }
-
   /* ─── FOOTER ─────────────────────────────────────────── */
   footer {
     background: var(--usf-green-dark);
@@ -571,7 +532,6 @@
     .hero-qr img { width: 70px; height: 70px; }
     .stages { grid-template-columns: 1fr; }
     .artifact-grid { grid-template-columns: 1fr 1fr; }
-    .crisp-word { display: none; }
   }
 </style>
 </head>
@@ -624,7 +584,6 @@
     <a href="#design">Course Design Artifact</a>
     <a href="#agenda">Agenda</a>
     <a href="#workflow">Workflow</a>
-    <a href="#crisp">CRISP Framework</a>
     <a href="#prompts">Canvas Build Sequence</a>
     <a href="#artifacts">Quick-Start Kit</a>
   </div>
@@ -682,14 +641,7 @@
         </div>
       </div>
 
-      <div class="agenda-item">
-        <div class="agenda-content">
-          <strong>Why the Build Sequence Works <span class="agenda-tag tag-demo">Framework</span></strong>
-          <span>The CRISP framework explains why short prompts produce complete pages: your Course Design Document already supplies the Context, Role, and Proof. The steps in the sequence provide the Instruction and Specs. Understanding this is the difference between trusting the output and second-guessing it.</span>
-        </div>
-      </div>
-
-      <div class="agenda-item">
+<div class="agenda-item">
         <div class="agenda-content">
           <strong>Live Build — CDD Attachment Workflow <span class="agenda-tag tag-live">Live</span></strong>
           <span>One document, three steps. Task 1: Attach the CDD, run Step 1 — Welcome Page. Task 2: Same document, run Step 2 — Course Home Page. Task 3: Same document, run Step 3 — Module 1 Overview. Each run takes under two minutes. The audience sees the full cycle: attach, copy, generate, paste.</span>
@@ -745,47 +697,7 @@
     </div>
   </section>
 
-  <!-- ── SECTION 4: CRISP FRAMEWORK ── -->
-  <section id="crisp">
-    <div class="section-label">Prompt Craft</div>
-    <div class="gold-line"></div>
-    <h2>The CRISP Framework</h2>
-    <p>Bad AI output is almost always a bad brief. Five elements separate a usable first draft from a frustrating hallucination.</p>
 
-    <table class="crisp-table" aria-label="CRISP prompt framework">
-      <tbody>
-        <tr>
-          <td class="crisp-letter">C</td>
-          <td class="crisp-word">Context</td>
-          <td class="crisp-desc">Course code, title, credits, delivery modality, term length</td>
-        </tr>
-        <tr>
-          <td class="crisp-letter">R</td>
-          <td class="crisp-word">Role</td>
-          <td class="crisp-desc">Tell AI who it is: "You are an instructional designer for a graduate business analytics course."</td>
-        </tr>
-        <tr>
-          <td class="crisp-letter">I</td>
-          <td class="crisp-word">Instruction</td>
-          <td class="crisp-desc">The specific task: write, generate, draft, reformat, summarize</td>
-        </tr>
-        <tr>
-          <td class="crisp-letter">S</td>
-          <td class="crisp-word">Specs</td>
-          <td class="crisp-desc">Format, tone, length, accessibility constraints, platform (Canvas RCE)</td>
-        </tr>
-        <tr>
-          <td class="crisp-letter">P</td>
-          <td class="crisp-word">Proof</td>
-          <td class="crisp-desc">A standard or example to match: paste an existing assignment, rubric row, or email</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="callout">
-      <strong>Rule of thumb:</strong> If your prompt fits in one sentence, it probably needs more context. If it takes 10 minutes to write, that's the point — AI saves you the next hour.
-    </div>
-  </section>
 
   <!-- ── SECTION 5: PROMPTS ── -->
   <section id="prompts">
